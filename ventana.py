@@ -63,6 +63,37 @@ class Ui_MainWindow(object):
         #ayuda
         self.ayudaMenu = QtWidgets.QMenu(self.barraMenu)
         self.ayudaMenu.setObjectName("ayudaMenu")
+        #etiquetas de iconos
+        self.iconoAbrir = QtWidgets.QPushButton(self.ventanaCentrada)
+        self.iconoAbrir.setGeometry(QtCore.QRect(40, 10, 50, 50))
+        self.iconoAbrir.setObjectName("iconoAbrir")
+        #pixmap1 = QtGui.QPixmap('.//iconos//abrir.PNG')
+        #self.iconoAbrir.setPixmap(pixmap1)
+        self.iconoNuevo = QtWidgets.QPushButton(self.ventanaCentrada)
+        self.iconoNuevo.setGeometry(QtCore.QRect(90, 10, 50, 50))
+        self.iconoNuevo.setObjectName("iconoNuevo")
+
+        self.iconoGuardar = QtWidgets.QPushButton(self.ventanaCentrada)
+        self.iconoGuardar.setGeometry(QtCore.QRect(140, 10, 50, 50))
+        self.iconoGuardar.setObjectName("iconoGuardar")
+
+        self.iconoGuardarComo = QtWidgets.QPushButton(self.ventanaCentrada)
+        self.iconoGuardarComo.setGeometry(QtCore.QRect(190, 10, 50, 50))
+        self.iconoGuardarComo.setObjectName("iconoGuardarComo")
+
+        self.iconoDescendente = QtWidgets.QPushButton(self.ventanaCentrada)
+        self.iconoDescendente.setGeometry(QtCore.QRect(300, 10, 50, 50))
+        self.iconoDescendente.setObjectName("iconoDescendente")
+
+        self.iconoAscendente = QtWidgets.QPushButton(self.ventanaCentrada)
+        self.iconoAscendente.setGeometry(QtCore.QRect(350, 10, 50, 50))
+        self.iconoAscendente.setObjectName("iconoAscendente")
+
+        self.iconoDebug = QtWidgets.QPushButton(self.ventanaCentrada)
+        self.iconoDebug.setGeometry(QtCore.QRect(400, 10, 50, 50))
+        self.iconoDebug.setObjectName("iconoDebug")
+
+
         #------------------------------------------------
         MainWindow.setMenuBar(self.barraMenu)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -166,7 +197,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         #aca solo setteo los nombres en cada componente y un sub nombre por asi decirlo
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Augus - Jossie Castrillo 201313692"))
         self.EdicionTexto.insertPlainText(_translate("MainWindow", ""))
         self.archivoMenu.setTitle(_translate("MainWindow", "Archivo"))
         self.editarMenu.setTitle(_translate("MainWindow", "Editar"))
@@ -203,6 +234,8 @@ class Ui_MainWindow(object):
         #de ayuda
         self.accionAyuda.setText(_translate("MainWindows","Ayuda"))
         self.accionAcerca.setText(_translate("MainWindows","Acerca de"))
+
+        #self.iconoAbrir.setText(_translate("MainWindows","J"))
 
 #self.EdicionTexto.setText(c.abrirArchivo("C:\\Users\\Jossie Castrillo\\Desktop\\[OLC2]P1_201313692\\prueba.txt"))
     def clicked(self, text):
