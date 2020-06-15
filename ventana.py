@@ -5,6 +5,7 @@ import accionesIDE as accionesVarias
 import mostrarLineas
 from random import seed
 from random import randint
+import ascendente as analizador
 
 
 class SyntaxHighlighter(QtGui.QSyntaxHighlighter):
@@ -221,15 +222,17 @@ class Ui_MainWindow(object):
         self.accionBuscar.triggered.connect(self.onTextChanged)
         self.accionReemplazar.triggered.connect(self.buscarReemplazar)
         #funciones de ejecutar
+        self.accionAscendente.triggered.connect(self.ejecutar_ascendente)
+        self.accionGramatical.triggered.connect(self.generarReporteGramatical)
+        self.accionErrores.triggered.connect(self.generarReporteErrores)
+
 
         #funciones de opciones
         self.accionColor.triggered.connect(lambda: self.cambiarColor())
         #funciones de ayuda
         self.accionAcerca.triggered.connect(lambda: self.ventanaAcercaDe("hola"))
+      
         #acciones de los botoncitos destemplados :v
-
-
-
         self.iconoAbrir.clicked.connect(self.abrir_archivo)
         self.iconoGuardar.clicked.connect(self.guardar_normal)
         self.iconoGuardarComo.clicked.connect(self.guardar_como)
@@ -351,9 +354,15 @@ class Ui_MainWindow(object):
 
     def ejecutar_ascendente(self):
         x=self.EdicionTexto.toPlainText()
-        print(x)
+        y=self.ConsolaSalida.toPlainText()
+        try:
+            salida=analizador.ejecucionAscendente(x,y)
+            salida+="\n---------------------FIN EJECUCION--------------------------"
+        except:
+            salida="Jossie>Se genero un error de analisis"
+        self.ConsolaSalida.setPlainText(salida)
 
-        
+    
         #print(x)
     
     def ejecutar_descendente(self):
@@ -388,7 +397,28 @@ class Ui_MainWindow(object):
         nuevaCadena= texto.replace(buscada, reemplazo)
         self.EdicionTexto.setPlainText(nuevaCadena)
 
-
+    def generarReporteGramatical(self):
+        try:
+            name = QtWidgets.QFileDialog.getSaveFileName(None, 'Save File')
+            print(name[0])
+            analizador.genenerarReporteGramaticalAscendente(name[0])
+            self.ventanaEmergente("Si se genero el reporte :D!")
+            #abre un file chooser para seleccionar un lugar para guardar el archivo y permite escribir el nombre con su extension.
+            #esa ruta se envia con el texto del editor al metodo guardarArchivo
+        except:
+            self.ventanaEmergente("no se genero el reporte :(")
+        
+    def generarReporteErrores(self):
+        try:
+            name = QtWidgets.QFileDialog.getSaveFileName(None, 'Save File')
+            print(name[0])
+            analizador.genenerarReporteErrores(name[0])
+            self.ventanaEmergente("Si se genero el reporte :D!")
+            #abre un file chooser para seleccionar un lugar para guardar el archivo y permite escribir el nombre con su extension.
+            #esa ruta se envia con el texto del editor al metodo guardarArchivo
+        except:
+            self.ventanaEmergente("no se genero el reporte :(")
+        
 
 #inicializacion del main y su interfaz para ejecucion
 if __name__ == "__main__":

@@ -1,0 +1,2041 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    CORCHETEDER
+    CORCHETEIZQ
+
+Grammar
+
+Rule 0     S' -> inicio
+Rule 1     inicio -> MAIN DOSPUNTOS bloque
+Rule 2     bloque -> bloque ETIQUETA DOSPUNTOS instrucciones
+Rule 3     bloque -> bloque instrucciones
+Rule 4     bloque -> ETIQUETA DOSPUNTOS instrucciones
+Rule 5     bloque -> instrucciones
+Rule 6     instrucciones -> instrucciones instruccion
+Rule 7     instrucciones -> instruccion
+Rule 8     instruccion -> imprimir
+Rule 9     instruccion -> salto
+Rule 10    instruccion -> salida
+Rule 11    instruccion -> instruccion_if
+Rule 12    instruccion -> asignacion
+Rule 13    instruccion -> destruir
+Rule 14    salida -> EXIT PUNTOYCOMA
+Rule 15    salto -> GOTO ETIQUETA PUNTOYCOMA
+Rule 16    destruir -> UNSET PARIZQUIERDO ID PARDERECHO
+Rule 17    imprimir -> PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA
+Rule 18    instruccion_if -> IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA
+Rule 19    asignacion -> ID IGUAL operacion PUNTOYCOMA
+Rule 20    operacion -> conversion
+Rule 21    operacion -> aritmetica
+Rule 22    operacion -> logica
+Rule 23    operacion -> bit
+Rule 24    operacion -> relacional
+Rule 25    operacion -> final
+Rule 26    conversion -> PARIZQUIERDO INT PARDERECHO final
+Rule 27    conversion -> PARIZQUIERDO FLOAT PARDERECHO final
+Rule 28    conversion -> PARIZQUIERDO CHAR PARDERECHO final
+Rule 29    aritmetica -> final MAS final
+Rule 30    aritmetica -> final MENOS final
+Rule 31    aritmetica -> final POR final
+Rule 32    aritmetica -> final DIV final
+Rule 33    aritmetica -> final RESIDUO final
+Rule 34    aritmetica -> ABS PARIZQUIERDO final PARDERECHO
+Rule 35    logica -> final AND final
+Rule 36    logica -> final OR final
+Rule 37    logica -> final XOR final
+Rule 38    logica -> NOT final
+Rule 39    bit -> final AND2 final
+Rule 40    bit -> final OR2 final
+Rule 41    bit -> final XOR2 final
+Rule 42    bit -> final DESPLAZAMIENTOIZQ final
+Rule 43    bit -> final DESPLAZAMIENTODER final
+Rule 44    bit -> NOT2 final
+Rule 45    relacional -> final IGUALIGUAL final
+Rule 46    relacional -> final DIFERENTE final
+Rule 47    relacional -> final MAYORIGUAL final
+Rule 48    relacional -> final MENORIGUAL final
+Rule 49    relacional -> final MAYOR final
+Rule 50    relacional -> final MENOR final
+Rule 51    final -> DECIMAL
+Rule 52    final -> ENTERO
+Rule 53    final -> ID
+Rule 54    final -> MENOS final
+Rule 55    final -> READ PARIZQUIERDO PARDERECHO
+Rule 56    final -> ARRAY PARIZQUIERDO PARDERECHO
+Rule 57    final -> CADENA
+
+Terminals, with rules where they appear
+
+ABS                  : 34
+AND                  : 35
+AND2                 : 39
+ARRAY                : 56
+CADENA               : 57
+CHAR                 : 28
+CORCHETEDER          : 
+CORCHETEIZQ          : 
+DECIMAL              : 51
+DESPLAZAMIENTODER    : 43
+DESPLAZAMIENTOIZQ    : 42
+DIFERENTE            : 46
+DIV                  : 32
+DOSPUNTOS            : 1 2 4
+ENTERO               : 52
+ETIQUETA             : 2 4 15 18
+EXIT                 : 14
+FLOAT                : 27
+GOTO                 : 15 18
+ID                   : 16 19 53
+IF                   : 18
+IGUAL                : 19
+IGUALIGUAL           : 45
+INT                  : 26
+MAIN                 : 1
+MAS                  : 29
+MAYOR                : 49
+MAYORIGUAL           : 47
+MENOR                : 50
+MENORIGUAL           : 48
+MENOS                : 30 54
+NOT                  : 38
+NOT2                 : 44
+OR                   : 36
+OR2                  : 40
+PARDERECHO           : 16 17 18 26 27 28 34 55 56
+PARIZQUIERDO         : 16 17 18 26 27 28 34 55 56
+POR                  : 31
+PRINT                : 17
+PUNTOYCOMA           : 14 15 17 18 19
+READ                 : 55
+RESIDUO              : 33
+UNSET                : 16
+XOR                  : 37
+XOR2                 : 41
+error                : 
+
+Nonterminals, with rules where they appear
+
+aritmetica           : 21
+asignacion           : 12
+bit                  : 23
+bloque               : 1 2 3
+conversion           : 20
+destruir             : 13
+final                : 17 25 26 27 28 29 29 30 30 31 31 32 32 33 33 34 35 35 36 36 37 37 38 39 39 40 40 41 41 42 42 43 43 44 45 45 46 46 47 47 48 48 49 49 50 50 54
+imprimir             : 8
+inicio               : 0
+instruccion          : 6 7
+instruccion_if       : 11
+instrucciones        : 2 3 4 5 6
+logica               : 22
+operacion            : 19
+relacional           : 18 24
+salida               : 10
+salto                : 9
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . inicio
+    (1) inicio -> . MAIN DOSPUNTOS bloque
+
+    MAIN            shift and go to state 2
+
+    inicio                         shift and go to state 1
+
+state 1
+
+    (0) S' -> inicio .
+
+
+
+state 2
+
+    (1) inicio -> MAIN . DOSPUNTOS bloque
+
+    DOSPUNTOS       shift and go to state 3
+
+
+state 3
+
+    (1) inicio -> MAIN DOSPUNTOS . bloque
+    (2) bloque -> . bloque ETIQUETA DOSPUNTOS instrucciones
+    (3) bloque -> . bloque instrucciones
+    (4) bloque -> . ETIQUETA DOSPUNTOS instrucciones
+    (5) bloque -> . instrucciones
+    (6) instrucciones -> . instrucciones instruccion
+    (7) instrucciones -> . instruccion
+    (8) instruccion -> . imprimir
+    (9) instruccion -> . salto
+    (10) instruccion -> . salida
+    (11) instruccion -> . instruccion_if
+    (12) instruccion -> . asignacion
+    (13) instruccion -> . destruir
+    (17) imprimir -> . PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA
+    (15) salto -> . GOTO ETIQUETA PUNTOYCOMA
+    (14) salida -> . EXIT PUNTOYCOMA
+    (18) instruccion_if -> . IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA
+    (19) asignacion -> . ID IGUAL operacion PUNTOYCOMA
+    (16) destruir -> . UNSET PARIZQUIERDO ID PARDERECHO
+
+    ETIQUETA        shift and go to state 5
+    PRINT           shift and go to state 14
+    GOTO            shift and go to state 15
+    EXIT            shift and go to state 16
+    IF              shift and go to state 17
+    ID              shift and go to state 18
+    UNSET           shift and go to state 19
+
+    bloque                         shift and go to state 4
+    instrucciones                  shift and go to state 6
+    instruccion                    shift and go to state 7
+    imprimir                       shift and go to state 8
+    salto                          shift and go to state 9
+    salida                         shift and go to state 10
+    instruccion_if                 shift and go to state 11
+    asignacion                     shift and go to state 12
+    destruir                       shift and go to state 13
+
+state 4
+
+    (1) inicio -> MAIN DOSPUNTOS bloque .
+    (2) bloque -> bloque . ETIQUETA DOSPUNTOS instrucciones
+    (3) bloque -> bloque . instrucciones
+    (6) instrucciones -> . instrucciones instruccion
+    (7) instrucciones -> . instruccion
+    (8) instruccion -> . imprimir
+    (9) instruccion -> . salto
+    (10) instruccion -> . salida
+    (11) instruccion -> . instruccion_if
+    (12) instruccion -> . asignacion
+    (13) instruccion -> . destruir
+    (17) imprimir -> . PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA
+    (15) salto -> . GOTO ETIQUETA PUNTOYCOMA
+    (14) salida -> . EXIT PUNTOYCOMA
+    (18) instruccion_if -> . IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA
+    (19) asignacion -> . ID IGUAL operacion PUNTOYCOMA
+    (16) destruir -> . UNSET PARIZQUIERDO ID PARDERECHO
+
+    $end            reduce using rule 1 (inicio -> MAIN DOSPUNTOS bloque .)
+    ETIQUETA        shift and go to state 20
+    PRINT           shift and go to state 14
+    GOTO            shift and go to state 15
+    EXIT            shift and go to state 16
+    IF              shift and go to state 17
+    ID              shift and go to state 18
+    UNSET           shift and go to state 19
+
+    instrucciones                  shift and go to state 21
+    instruccion                    shift and go to state 7
+    imprimir                       shift and go to state 8
+    salto                          shift and go to state 9
+    salida                         shift and go to state 10
+    instruccion_if                 shift and go to state 11
+    asignacion                     shift and go to state 12
+    destruir                       shift and go to state 13
+
+state 5
+
+    (4) bloque -> ETIQUETA . DOSPUNTOS instrucciones
+
+    DOSPUNTOS       shift and go to state 22
+
+
+state 6
+
+    (5) bloque -> instrucciones .
+    (6) instrucciones -> instrucciones . instruccion
+    (8) instruccion -> . imprimir
+    (9) instruccion -> . salto
+    (10) instruccion -> . salida
+    (11) instruccion -> . instruccion_if
+    (12) instruccion -> . asignacion
+    (13) instruccion -> . destruir
+    (17) imprimir -> . PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA
+    (15) salto -> . GOTO ETIQUETA PUNTOYCOMA
+    (14) salida -> . EXIT PUNTOYCOMA
+    (18) instruccion_if -> . IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA
+    (19) asignacion -> . ID IGUAL operacion PUNTOYCOMA
+    (16) destruir -> . UNSET PARIZQUIERDO ID PARDERECHO
+
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for GOTO resolved as shift
+  ! shift/reduce conflict for EXIT resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for UNSET resolved as shift
+    ETIQUETA        reduce using rule 5 (bloque -> instrucciones .)
+    $end            reduce using rule 5 (bloque -> instrucciones .)
+    PRINT           shift and go to state 14
+    GOTO            shift and go to state 15
+    EXIT            shift and go to state 16
+    IF              shift and go to state 17
+    ID              shift and go to state 18
+    UNSET           shift and go to state 19
+
+  ! PRINT           [ reduce using rule 5 (bloque -> instrucciones .) ]
+  ! GOTO            [ reduce using rule 5 (bloque -> instrucciones .) ]
+  ! EXIT            [ reduce using rule 5 (bloque -> instrucciones .) ]
+  ! IF              [ reduce using rule 5 (bloque -> instrucciones .) ]
+  ! ID              [ reduce using rule 5 (bloque -> instrucciones .) ]
+  ! UNSET           [ reduce using rule 5 (bloque -> instrucciones .) ]
+
+    instruccion                    shift and go to state 23
+    imprimir                       shift and go to state 8
+    salto                          shift and go to state 9
+    salida                         shift and go to state 10
+    instruccion_if                 shift and go to state 11
+    asignacion                     shift and go to state 12
+    destruir                       shift and go to state 13
+
+state 7
+
+    (7) instrucciones -> instruccion .
+
+    PRINT           reduce using rule 7 (instrucciones -> instruccion .)
+    GOTO            reduce using rule 7 (instrucciones -> instruccion .)
+    EXIT            reduce using rule 7 (instrucciones -> instruccion .)
+    IF              reduce using rule 7 (instrucciones -> instruccion .)
+    ID              reduce using rule 7 (instrucciones -> instruccion .)
+    UNSET           reduce using rule 7 (instrucciones -> instruccion .)
+    ETIQUETA        reduce using rule 7 (instrucciones -> instruccion .)
+    $end            reduce using rule 7 (instrucciones -> instruccion .)
+
+
+state 8
+
+    (8) instruccion -> imprimir .
+
+    PRINT           reduce using rule 8 (instruccion -> imprimir .)
+    GOTO            reduce using rule 8 (instruccion -> imprimir .)
+    EXIT            reduce using rule 8 (instruccion -> imprimir .)
+    IF              reduce using rule 8 (instruccion -> imprimir .)
+    ID              reduce using rule 8 (instruccion -> imprimir .)
+    UNSET           reduce using rule 8 (instruccion -> imprimir .)
+    ETIQUETA        reduce using rule 8 (instruccion -> imprimir .)
+    $end            reduce using rule 8 (instruccion -> imprimir .)
+
+
+state 9
+
+    (9) instruccion -> salto .
+
+    PRINT           reduce using rule 9 (instruccion -> salto .)
+    GOTO            reduce using rule 9 (instruccion -> salto .)
+    EXIT            reduce using rule 9 (instruccion -> salto .)
+    IF              reduce using rule 9 (instruccion -> salto .)
+    ID              reduce using rule 9 (instruccion -> salto .)
+    UNSET           reduce using rule 9 (instruccion -> salto .)
+    ETIQUETA        reduce using rule 9 (instruccion -> salto .)
+    $end            reduce using rule 9 (instruccion -> salto .)
+
+
+state 10
+
+    (10) instruccion -> salida .
+
+    PRINT           reduce using rule 10 (instruccion -> salida .)
+    GOTO            reduce using rule 10 (instruccion -> salida .)
+    EXIT            reduce using rule 10 (instruccion -> salida .)
+    IF              reduce using rule 10 (instruccion -> salida .)
+    ID              reduce using rule 10 (instruccion -> salida .)
+    UNSET           reduce using rule 10 (instruccion -> salida .)
+    ETIQUETA        reduce using rule 10 (instruccion -> salida .)
+    $end            reduce using rule 10 (instruccion -> salida .)
+
+
+state 11
+
+    (11) instruccion -> instruccion_if .
+
+    PRINT           reduce using rule 11 (instruccion -> instruccion_if .)
+    GOTO            reduce using rule 11 (instruccion -> instruccion_if .)
+    EXIT            reduce using rule 11 (instruccion -> instruccion_if .)
+    IF              reduce using rule 11 (instruccion -> instruccion_if .)
+    ID              reduce using rule 11 (instruccion -> instruccion_if .)
+    UNSET           reduce using rule 11 (instruccion -> instruccion_if .)
+    ETIQUETA        reduce using rule 11 (instruccion -> instruccion_if .)
+    $end            reduce using rule 11 (instruccion -> instruccion_if .)
+
+
+state 12
+
+    (12) instruccion -> asignacion .
+
+    PRINT           reduce using rule 12 (instruccion -> asignacion .)
+    GOTO            reduce using rule 12 (instruccion -> asignacion .)
+    EXIT            reduce using rule 12 (instruccion -> asignacion .)
+    IF              reduce using rule 12 (instruccion -> asignacion .)
+    ID              reduce using rule 12 (instruccion -> asignacion .)
+    UNSET           reduce using rule 12 (instruccion -> asignacion .)
+    ETIQUETA        reduce using rule 12 (instruccion -> asignacion .)
+    $end            reduce using rule 12 (instruccion -> asignacion .)
+
+
+state 13
+
+    (13) instruccion -> destruir .
+
+    PRINT           reduce using rule 13 (instruccion -> destruir .)
+    GOTO            reduce using rule 13 (instruccion -> destruir .)
+    EXIT            reduce using rule 13 (instruccion -> destruir .)
+    IF              reduce using rule 13 (instruccion -> destruir .)
+    ID              reduce using rule 13 (instruccion -> destruir .)
+    UNSET           reduce using rule 13 (instruccion -> destruir .)
+    ETIQUETA        reduce using rule 13 (instruccion -> destruir .)
+    $end            reduce using rule 13 (instruccion -> destruir .)
+
+
+state 14
+
+    (17) imprimir -> PRINT . PARIZQUIERDO final PARDERECHO PUNTOYCOMA
+
+    PARIZQUIERDO    shift and go to state 24
+
+
+state 15
+
+    (15) salto -> GOTO . ETIQUETA PUNTOYCOMA
+
+    ETIQUETA        shift and go to state 25
+
+
+state 16
+
+    (14) salida -> EXIT . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 26
+
+
+state 17
+
+    (18) instruccion_if -> IF . PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA
+
+    PARIZQUIERDO    shift and go to state 27
+
+
+state 18
+
+    (19) asignacion -> ID . IGUAL operacion PUNTOYCOMA
+
+    IGUAL           shift and go to state 28
+
+
+state 19
+
+    (16) destruir -> UNSET . PARIZQUIERDO ID PARDERECHO
+
+    PARIZQUIERDO    shift and go to state 29
+
+
+state 20
+
+    (2) bloque -> bloque ETIQUETA . DOSPUNTOS instrucciones
+
+    DOSPUNTOS       shift and go to state 30
+
+
+state 21
+
+    (3) bloque -> bloque instrucciones .
+    (6) instrucciones -> instrucciones . instruccion
+    (8) instruccion -> . imprimir
+    (9) instruccion -> . salto
+    (10) instruccion -> . salida
+    (11) instruccion -> . instruccion_if
+    (12) instruccion -> . asignacion
+    (13) instruccion -> . destruir
+    (17) imprimir -> . PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA
+    (15) salto -> . GOTO ETIQUETA PUNTOYCOMA
+    (14) salida -> . EXIT PUNTOYCOMA
+    (18) instruccion_if -> . IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA
+    (19) asignacion -> . ID IGUAL operacion PUNTOYCOMA
+    (16) destruir -> . UNSET PARIZQUIERDO ID PARDERECHO
+
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for GOTO resolved as shift
+  ! shift/reduce conflict for EXIT resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for UNSET resolved as shift
+    ETIQUETA        reduce using rule 3 (bloque -> bloque instrucciones .)
+    $end            reduce using rule 3 (bloque -> bloque instrucciones .)
+    PRINT           shift and go to state 14
+    GOTO            shift and go to state 15
+    EXIT            shift and go to state 16
+    IF              shift and go to state 17
+    ID              shift and go to state 18
+    UNSET           shift and go to state 19
+
+  ! PRINT           [ reduce using rule 3 (bloque -> bloque instrucciones .) ]
+  ! GOTO            [ reduce using rule 3 (bloque -> bloque instrucciones .) ]
+  ! EXIT            [ reduce using rule 3 (bloque -> bloque instrucciones .) ]
+  ! IF              [ reduce using rule 3 (bloque -> bloque instrucciones .) ]
+  ! ID              [ reduce using rule 3 (bloque -> bloque instrucciones .) ]
+  ! UNSET           [ reduce using rule 3 (bloque -> bloque instrucciones .) ]
+
+    instruccion                    shift and go to state 23
+    imprimir                       shift and go to state 8
+    salto                          shift and go to state 9
+    salida                         shift and go to state 10
+    instruccion_if                 shift and go to state 11
+    asignacion                     shift and go to state 12
+    destruir                       shift and go to state 13
+
+state 22
+
+    (4) bloque -> ETIQUETA DOSPUNTOS . instrucciones
+    (6) instrucciones -> . instrucciones instruccion
+    (7) instrucciones -> . instruccion
+    (8) instruccion -> . imprimir
+    (9) instruccion -> . salto
+    (10) instruccion -> . salida
+    (11) instruccion -> . instruccion_if
+    (12) instruccion -> . asignacion
+    (13) instruccion -> . destruir
+    (17) imprimir -> . PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA
+    (15) salto -> . GOTO ETIQUETA PUNTOYCOMA
+    (14) salida -> . EXIT PUNTOYCOMA
+    (18) instruccion_if -> . IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA
+    (19) asignacion -> . ID IGUAL operacion PUNTOYCOMA
+    (16) destruir -> . UNSET PARIZQUIERDO ID PARDERECHO
+
+    PRINT           shift and go to state 14
+    GOTO            shift and go to state 15
+    EXIT            shift and go to state 16
+    IF              shift and go to state 17
+    ID              shift and go to state 18
+    UNSET           shift and go to state 19
+
+    instrucciones                  shift and go to state 31
+    instruccion                    shift and go to state 7
+    imprimir                       shift and go to state 8
+    salto                          shift and go to state 9
+    salida                         shift and go to state 10
+    instruccion_if                 shift and go to state 11
+    asignacion                     shift and go to state 12
+    destruir                       shift and go to state 13
+
+state 23
+
+    (6) instrucciones -> instrucciones instruccion .
+
+    PRINT           reduce using rule 6 (instrucciones -> instrucciones instruccion .)
+    GOTO            reduce using rule 6 (instrucciones -> instrucciones instruccion .)
+    EXIT            reduce using rule 6 (instrucciones -> instrucciones instruccion .)
+    IF              reduce using rule 6 (instrucciones -> instrucciones instruccion .)
+    ID              reduce using rule 6 (instrucciones -> instrucciones instruccion .)
+    UNSET           reduce using rule 6 (instrucciones -> instrucciones instruccion .)
+    ETIQUETA        reduce using rule 6 (instrucciones -> instrucciones instruccion .)
+    $end            reduce using rule 6 (instrucciones -> instrucciones instruccion .)
+
+
+state 24
+
+    (17) imprimir -> PRINT PARIZQUIERDO . final PARDERECHO PUNTOYCOMA
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 32
+
+state 25
+
+    (15) salto -> GOTO ETIQUETA . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 40
+
+
+state 26
+
+    (14) salida -> EXIT PUNTOYCOMA .
+
+    PRINT           reduce using rule 14 (salida -> EXIT PUNTOYCOMA .)
+    GOTO            reduce using rule 14 (salida -> EXIT PUNTOYCOMA .)
+    EXIT            reduce using rule 14 (salida -> EXIT PUNTOYCOMA .)
+    IF              reduce using rule 14 (salida -> EXIT PUNTOYCOMA .)
+    ID              reduce using rule 14 (salida -> EXIT PUNTOYCOMA .)
+    UNSET           reduce using rule 14 (salida -> EXIT PUNTOYCOMA .)
+    ETIQUETA        reduce using rule 14 (salida -> EXIT PUNTOYCOMA .)
+    $end            reduce using rule 14 (salida -> EXIT PUNTOYCOMA .)
+
+
+state 27
+
+    (18) instruccion_if -> IF PARIZQUIERDO . relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA
+    (45) relacional -> . final IGUALIGUAL final
+    (46) relacional -> . final DIFERENTE final
+    (47) relacional -> . final MAYORIGUAL final
+    (48) relacional -> . final MENORIGUAL final
+    (49) relacional -> . final MAYOR final
+    (50) relacional -> . final MENOR final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    relacional                     shift and go to state 41
+    final                          shift and go to state 42
+
+state 28
+
+    (19) asignacion -> ID IGUAL . operacion PUNTOYCOMA
+    (20) operacion -> . conversion
+    (21) operacion -> . aritmetica
+    (22) operacion -> . logica
+    (23) operacion -> . bit
+    (24) operacion -> . relacional
+    (25) operacion -> . final
+    (26) conversion -> . PARIZQUIERDO INT PARDERECHO final
+    (27) conversion -> . PARIZQUIERDO FLOAT PARDERECHO final
+    (28) conversion -> . PARIZQUIERDO CHAR PARDERECHO final
+    (29) aritmetica -> . final MAS final
+    (30) aritmetica -> . final MENOS final
+    (31) aritmetica -> . final POR final
+    (32) aritmetica -> . final DIV final
+    (33) aritmetica -> . final RESIDUO final
+    (34) aritmetica -> . ABS PARIZQUIERDO final PARDERECHO
+    (35) logica -> . final AND final
+    (36) logica -> . final OR final
+    (37) logica -> . final XOR final
+    (38) logica -> . NOT final
+    (39) bit -> . final AND2 final
+    (40) bit -> . final OR2 final
+    (41) bit -> . final XOR2 final
+    (42) bit -> . final DESPLAZAMIENTOIZQ final
+    (43) bit -> . final DESPLAZAMIENTODER final
+    (44) bit -> . NOT2 final
+    (45) relacional -> . final IGUALIGUAL final
+    (46) relacional -> . final DIFERENTE final
+    (47) relacional -> . final MAYORIGUAL final
+    (48) relacional -> . final MENORIGUAL final
+    (49) relacional -> . final MAYOR final
+    (50) relacional -> . final MENOR final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    PARIZQUIERDO    shift and go to state 50
+    ABS             shift and go to state 51
+    NOT             shift and go to state 52
+    NOT2            shift and go to state 53
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    operacion                      shift and go to state 43
+    conversion                     shift and go to state 44
+    aritmetica                     shift and go to state 45
+    logica                         shift and go to state 46
+    bit                            shift and go to state 47
+    relacional                     shift and go to state 48
+    final                          shift and go to state 49
+
+state 29
+
+    (16) destruir -> UNSET PARIZQUIERDO . ID PARDERECHO
+
+    ID              shift and go to state 54
+
+
+state 30
+
+    (2) bloque -> bloque ETIQUETA DOSPUNTOS . instrucciones
+    (6) instrucciones -> . instrucciones instruccion
+    (7) instrucciones -> . instruccion
+    (8) instruccion -> . imprimir
+    (9) instruccion -> . salto
+    (10) instruccion -> . salida
+    (11) instruccion -> . instruccion_if
+    (12) instruccion -> . asignacion
+    (13) instruccion -> . destruir
+    (17) imprimir -> . PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA
+    (15) salto -> . GOTO ETIQUETA PUNTOYCOMA
+    (14) salida -> . EXIT PUNTOYCOMA
+    (18) instruccion_if -> . IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA
+    (19) asignacion -> . ID IGUAL operacion PUNTOYCOMA
+    (16) destruir -> . UNSET PARIZQUIERDO ID PARDERECHO
+
+    PRINT           shift and go to state 14
+    GOTO            shift and go to state 15
+    EXIT            shift and go to state 16
+    IF              shift and go to state 17
+    ID              shift and go to state 18
+    UNSET           shift and go to state 19
+
+    instrucciones                  shift and go to state 55
+    instruccion                    shift and go to state 7
+    imprimir                       shift and go to state 8
+    salto                          shift and go to state 9
+    salida                         shift and go to state 10
+    instruccion_if                 shift and go to state 11
+    asignacion                     shift and go to state 12
+    destruir                       shift and go to state 13
+
+state 31
+
+    (4) bloque -> ETIQUETA DOSPUNTOS instrucciones .
+    (6) instrucciones -> instrucciones . instruccion
+    (8) instruccion -> . imprimir
+    (9) instruccion -> . salto
+    (10) instruccion -> . salida
+    (11) instruccion -> . instruccion_if
+    (12) instruccion -> . asignacion
+    (13) instruccion -> . destruir
+    (17) imprimir -> . PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA
+    (15) salto -> . GOTO ETIQUETA PUNTOYCOMA
+    (14) salida -> . EXIT PUNTOYCOMA
+    (18) instruccion_if -> . IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA
+    (19) asignacion -> . ID IGUAL operacion PUNTOYCOMA
+    (16) destruir -> . UNSET PARIZQUIERDO ID PARDERECHO
+
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for GOTO resolved as shift
+  ! shift/reduce conflict for EXIT resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for UNSET resolved as shift
+    ETIQUETA        reduce using rule 4 (bloque -> ETIQUETA DOSPUNTOS instrucciones .)
+    $end            reduce using rule 4 (bloque -> ETIQUETA DOSPUNTOS instrucciones .)
+    PRINT           shift and go to state 14
+    GOTO            shift and go to state 15
+    EXIT            shift and go to state 16
+    IF              shift and go to state 17
+    ID              shift and go to state 18
+    UNSET           shift and go to state 19
+
+  ! PRINT           [ reduce using rule 4 (bloque -> ETIQUETA DOSPUNTOS instrucciones .) ]
+  ! GOTO            [ reduce using rule 4 (bloque -> ETIQUETA DOSPUNTOS instrucciones .) ]
+  ! EXIT            [ reduce using rule 4 (bloque -> ETIQUETA DOSPUNTOS instrucciones .) ]
+  ! IF              [ reduce using rule 4 (bloque -> ETIQUETA DOSPUNTOS instrucciones .) ]
+  ! ID              [ reduce using rule 4 (bloque -> ETIQUETA DOSPUNTOS instrucciones .) ]
+  ! UNSET           [ reduce using rule 4 (bloque -> ETIQUETA DOSPUNTOS instrucciones .) ]
+
+    instruccion                    shift and go to state 23
+    imprimir                       shift and go to state 8
+    salto                          shift and go to state 9
+    salida                         shift and go to state 10
+    instruccion_if                 shift and go to state 11
+    asignacion                     shift and go to state 12
+    destruir                       shift and go to state 13
+
+state 32
+
+    (17) imprimir -> PRINT PARIZQUIERDO final . PARDERECHO PUNTOYCOMA
+
+    PARDERECHO      shift and go to state 56
+
+
+state 33
+
+    (51) final -> DECIMAL .
+
+    PARDERECHO      reduce using rule 51 (final -> DECIMAL .)
+    IGUALIGUAL      reduce using rule 51 (final -> DECIMAL .)
+    DIFERENTE       reduce using rule 51 (final -> DECIMAL .)
+    MAYORIGUAL      reduce using rule 51 (final -> DECIMAL .)
+    MENORIGUAL      reduce using rule 51 (final -> DECIMAL .)
+    MAYOR           reduce using rule 51 (final -> DECIMAL .)
+    MENOR           reduce using rule 51 (final -> DECIMAL .)
+    MAS             reduce using rule 51 (final -> DECIMAL .)
+    MENOS           reduce using rule 51 (final -> DECIMAL .)
+    POR             reduce using rule 51 (final -> DECIMAL .)
+    DIV             reduce using rule 51 (final -> DECIMAL .)
+    RESIDUO         reduce using rule 51 (final -> DECIMAL .)
+    AND             reduce using rule 51 (final -> DECIMAL .)
+    OR              reduce using rule 51 (final -> DECIMAL .)
+    XOR             reduce using rule 51 (final -> DECIMAL .)
+    AND2            reduce using rule 51 (final -> DECIMAL .)
+    OR2             reduce using rule 51 (final -> DECIMAL .)
+    XOR2            reduce using rule 51 (final -> DECIMAL .)
+    DESPLAZAMIENTOIZQ reduce using rule 51 (final -> DECIMAL .)
+    DESPLAZAMIENTODER reduce using rule 51 (final -> DECIMAL .)
+    PUNTOYCOMA      reduce using rule 51 (final -> DECIMAL .)
+
+
+state 34
+
+    (52) final -> ENTERO .
+
+    PARDERECHO      reduce using rule 52 (final -> ENTERO .)
+    IGUALIGUAL      reduce using rule 52 (final -> ENTERO .)
+    DIFERENTE       reduce using rule 52 (final -> ENTERO .)
+    MAYORIGUAL      reduce using rule 52 (final -> ENTERO .)
+    MENORIGUAL      reduce using rule 52 (final -> ENTERO .)
+    MAYOR           reduce using rule 52 (final -> ENTERO .)
+    MENOR           reduce using rule 52 (final -> ENTERO .)
+    MAS             reduce using rule 52 (final -> ENTERO .)
+    MENOS           reduce using rule 52 (final -> ENTERO .)
+    POR             reduce using rule 52 (final -> ENTERO .)
+    DIV             reduce using rule 52 (final -> ENTERO .)
+    RESIDUO         reduce using rule 52 (final -> ENTERO .)
+    AND             reduce using rule 52 (final -> ENTERO .)
+    OR              reduce using rule 52 (final -> ENTERO .)
+    XOR             reduce using rule 52 (final -> ENTERO .)
+    AND2            reduce using rule 52 (final -> ENTERO .)
+    OR2             reduce using rule 52 (final -> ENTERO .)
+    XOR2            reduce using rule 52 (final -> ENTERO .)
+    DESPLAZAMIENTOIZQ reduce using rule 52 (final -> ENTERO .)
+    DESPLAZAMIENTODER reduce using rule 52 (final -> ENTERO .)
+    PUNTOYCOMA      reduce using rule 52 (final -> ENTERO .)
+
+
+state 35
+
+    (53) final -> ID .
+
+    PARDERECHO      reduce using rule 53 (final -> ID .)
+    IGUALIGUAL      reduce using rule 53 (final -> ID .)
+    DIFERENTE       reduce using rule 53 (final -> ID .)
+    MAYORIGUAL      reduce using rule 53 (final -> ID .)
+    MENORIGUAL      reduce using rule 53 (final -> ID .)
+    MAYOR           reduce using rule 53 (final -> ID .)
+    MENOR           reduce using rule 53 (final -> ID .)
+    MAS             reduce using rule 53 (final -> ID .)
+    MENOS           reduce using rule 53 (final -> ID .)
+    POR             reduce using rule 53 (final -> ID .)
+    DIV             reduce using rule 53 (final -> ID .)
+    RESIDUO         reduce using rule 53 (final -> ID .)
+    AND             reduce using rule 53 (final -> ID .)
+    OR              reduce using rule 53 (final -> ID .)
+    XOR             reduce using rule 53 (final -> ID .)
+    AND2            reduce using rule 53 (final -> ID .)
+    OR2             reduce using rule 53 (final -> ID .)
+    XOR2            reduce using rule 53 (final -> ID .)
+    DESPLAZAMIENTOIZQ reduce using rule 53 (final -> ID .)
+    DESPLAZAMIENTODER reduce using rule 53 (final -> ID .)
+    PUNTOYCOMA      reduce using rule 53 (final -> ID .)
+
+
+state 36
+
+    (54) final -> MENOS . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 57
+
+state 37
+
+    (55) final -> READ . PARIZQUIERDO PARDERECHO
+
+    PARIZQUIERDO    shift and go to state 58
+
+
+state 38
+
+    (56) final -> ARRAY . PARIZQUIERDO PARDERECHO
+
+    PARIZQUIERDO    shift and go to state 59
+
+
+state 39
+
+    (57) final -> CADENA .
+
+    PARDERECHO      reduce using rule 57 (final -> CADENA .)
+    IGUALIGUAL      reduce using rule 57 (final -> CADENA .)
+    DIFERENTE       reduce using rule 57 (final -> CADENA .)
+    MAYORIGUAL      reduce using rule 57 (final -> CADENA .)
+    MENORIGUAL      reduce using rule 57 (final -> CADENA .)
+    MAYOR           reduce using rule 57 (final -> CADENA .)
+    MENOR           reduce using rule 57 (final -> CADENA .)
+    MAS             reduce using rule 57 (final -> CADENA .)
+    MENOS           reduce using rule 57 (final -> CADENA .)
+    POR             reduce using rule 57 (final -> CADENA .)
+    DIV             reduce using rule 57 (final -> CADENA .)
+    RESIDUO         reduce using rule 57 (final -> CADENA .)
+    AND             reduce using rule 57 (final -> CADENA .)
+    OR              reduce using rule 57 (final -> CADENA .)
+    XOR             reduce using rule 57 (final -> CADENA .)
+    AND2            reduce using rule 57 (final -> CADENA .)
+    OR2             reduce using rule 57 (final -> CADENA .)
+    XOR2            reduce using rule 57 (final -> CADENA .)
+    DESPLAZAMIENTOIZQ reduce using rule 57 (final -> CADENA .)
+    DESPLAZAMIENTODER reduce using rule 57 (final -> CADENA .)
+    PUNTOYCOMA      reduce using rule 57 (final -> CADENA .)
+
+
+state 40
+
+    (15) salto -> GOTO ETIQUETA PUNTOYCOMA .
+
+    PRINT           reduce using rule 15 (salto -> GOTO ETIQUETA PUNTOYCOMA .)
+    GOTO            reduce using rule 15 (salto -> GOTO ETIQUETA PUNTOYCOMA .)
+    EXIT            reduce using rule 15 (salto -> GOTO ETIQUETA PUNTOYCOMA .)
+    IF              reduce using rule 15 (salto -> GOTO ETIQUETA PUNTOYCOMA .)
+    ID              reduce using rule 15 (salto -> GOTO ETIQUETA PUNTOYCOMA .)
+    UNSET           reduce using rule 15 (salto -> GOTO ETIQUETA PUNTOYCOMA .)
+    ETIQUETA        reduce using rule 15 (salto -> GOTO ETIQUETA PUNTOYCOMA .)
+    $end            reduce using rule 15 (salto -> GOTO ETIQUETA PUNTOYCOMA .)
+
+
+state 41
+
+    (18) instruccion_if -> IF PARIZQUIERDO relacional . PARDERECHO GOTO ETIQUETA PUNTOYCOMA
+
+    PARDERECHO      shift and go to state 60
+
+
+state 42
+
+    (45) relacional -> final . IGUALIGUAL final
+    (46) relacional -> final . DIFERENTE final
+    (47) relacional -> final . MAYORIGUAL final
+    (48) relacional -> final . MENORIGUAL final
+    (49) relacional -> final . MAYOR final
+    (50) relacional -> final . MENOR final
+
+    IGUALIGUAL      shift and go to state 61
+    DIFERENTE       shift and go to state 62
+    MAYORIGUAL      shift and go to state 63
+    MENORIGUAL      shift and go to state 64
+    MAYOR           shift and go to state 65
+    MENOR           shift and go to state 66
+
+
+state 43
+
+    (19) asignacion -> ID IGUAL operacion . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 67
+
+
+state 44
+
+    (20) operacion -> conversion .
+
+    PUNTOYCOMA      reduce using rule 20 (operacion -> conversion .)
+
+
+state 45
+
+    (21) operacion -> aritmetica .
+
+    PUNTOYCOMA      reduce using rule 21 (operacion -> aritmetica .)
+
+
+state 46
+
+    (22) operacion -> logica .
+
+    PUNTOYCOMA      reduce using rule 22 (operacion -> logica .)
+
+
+state 47
+
+    (23) operacion -> bit .
+
+    PUNTOYCOMA      reduce using rule 23 (operacion -> bit .)
+
+
+state 48
+
+    (24) operacion -> relacional .
+
+    PUNTOYCOMA      reduce using rule 24 (operacion -> relacional .)
+
+
+state 49
+
+    (25) operacion -> final .
+    (29) aritmetica -> final . MAS final
+    (30) aritmetica -> final . MENOS final
+    (31) aritmetica -> final . POR final
+    (32) aritmetica -> final . DIV final
+    (33) aritmetica -> final . RESIDUO final
+    (35) logica -> final . AND final
+    (36) logica -> final . OR final
+    (37) logica -> final . XOR final
+    (39) bit -> final . AND2 final
+    (40) bit -> final . OR2 final
+    (41) bit -> final . XOR2 final
+    (42) bit -> final . DESPLAZAMIENTOIZQ final
+    (43) bit -> final . DESPLAZAMIENTODER final
+    (45) relacional -> final . IGUALIGUAL final
+    (46) relacional -> final . DIFERENTE final
+    (47) relacional -> final . MAYORIGUAL final
+    (48) relacional -> final . MENORIGUAL final
+    (49) relacional -> final . MAYOR final
+    (50) relacional -> final . MENOR final
+
+    PUNTOYCOMA      reduce using rule 25 (operacion -> final .)
+    MAS             shift and go to state 68
+    MENOS           shift and go to state 69
+    POR             shift and go to state 70
+    DIV             shift and go to state 71
+    RESIDUO         shift and go to state 72
+    AND             shift and go to state 73
+    OR              shift and go to state 74
+    XOR             shift and go to state 75
+    AND2            shift and go to state 76
+    OR2             shift and go to state 77
+    XOR2            shift and go to state 78
+    DESPLAZAMIENTOIZQ shift and go to state 79
+    DESPLAZAMIENTODER shift and go to state 80
+    IGUALIGUAL      shift and go to state 61
+    DIFERENTE       shift and go to state 62
+    MAYORIGUAL      shift and go to state 63
+    MENORIGUAL      shift and go to state 64
+    MAYOR           shift and go to state 65
+    MENOR           shift and go to state 66
+
+
+state 50
+
+    (26) conversion -> PARIZQUIERDO . INT PARDERECHO final
+    (27) conversion -> PARIZQUIERDO . FLOAT PARDERECHO final
+    (28) conversion -> PARIZQUIERDO . CHAR PARDERECHO final
+
+    INT             shift and go to state 81
+    FLOAT           shift and go to state 82
+    CHAR            shift and go to state 83
+
+
+state 51
+
+    (34) aritmetica -> ABS . PARIZQUIERDO final PARDERECHO
+
+    PARIZQUIERDO    shift and go to state 84
+
+
+state 52
+
+    (38) logica -> NOT . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 85
+
+state 53
+
+    (44) bit -> NOT2 . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 86
+
+state 54
+
+    (16) destruir -> UNSET PARIZQUIERDO ID . PARDERECHO
+
+    PARDERECHO      shift and go to state 87
+
+
+state 55
+
+    (2) bloque -> bloque ETIQUETA DOSPUNTOS instrucciones .
+    (6) instrucciones -> instrucciones . instruccion
+    (8) instruccion -> . imprimir
+    (9) instruccion -> . salto
+    (10) instruccion -> . salida
+    (11) instruccion -> . instruccion_if
+    (12) instruccion -> . asignacion
+    (13) instruccion -> . destruir
+    (17) imprimir -> . PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA
+    (15) salto -> . GOTO ETIQUETA PUNTOYCOMA
+    (14) salida -> . EXIT PUNTOYCOMA
+    (18) instruccion_if -> . IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA
+    (19) asignacion -> . ID IGUAL operacion PUNTOYCOMA
+    (16) destruir -> . UNSET PARIZQUIERDO ID PARDERECHO
+
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for GOTO resolved as shift
+  ! shift/reduce conflict for EXIT resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for UNSET resolved as shift
+    ETIQUETA        reduce using rule 2 (bloque -> bloque ETIQUETA DOSPUNTOS instrucciones .)
+    $end            reduce using rule 2 (bloque -> bloque ETIQUETA DOSPUNTOS instrucciones .)
+    PRINT           shift and go to state 14
+    GOTO            shift and go to state 15
+    EXIT            shift and go to state 16
+    IF              shift and go to state 17
+    ID              shift and go to state 18
+    UNSET           shift and go to state 19
+
+  ! PRINT           [ reduce using rule 2 (bloque -> bloque ETIQUETA DOSPUNTOS instrucciones .) ]
+  ! GOTO            [ reduce using rule 2 (bloque -> bloque ETIQUETA DOSPUNTOS instrucciones .) ]
+  ! EXIT            [ reduce using rule 2 (bloque -> bloque ETIQUETA DOSPUNTOS instrucciones .) ]
+  ! IF              [ reduce using rule 2 (bloque -> bloque ETIQUETA DOSPUNTOS instrucciones .) ]
+  ! ID              [ reduce using rule 2 (bloque -> bloque ETIQUETA DOSPUNTOS instrucciones .) ]
+  ! UNSET           [ reduce using rule 2 (bloque -> bloque ETIQUETA DOSPUNTOS instrucciones .) ]
+
+    instruccion                    shift and go to state 23
+    imprimir                       shift and go to state 8
+    salto                          shift and go to state 9
+    salida                         shift and go to state 10
+    instruccion_if                 shift and go to state 11
+    asignacion                     shift and go to state 12
+    destruir                       shift and go to state 13
+
+state 56
+
+    (17) imprimir -> PRINT PARIZQUIERDO final PARDERECHO . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 88
+
+
+state 57
+
+    (54) final -> MENOS final .
+
+    PARDERECHO      reduce using rule 54 (final -> MENOS final .)
+    IGUALIGUAL      reduce using rule 54 (final -> MENOS final .)
+    DIFERENTE       reduce using rule 54 (final -> MENOS final .)
+    MAYORIGUAL      reduce using rule 54 (final -> MENOS final .)
+    MENORIGUAL      reduce using rule 54 (final -> MENOS final .)
+    MAYOR           reduce using rule 54 (final -> MENOS final .)
+    MENOR           reduce using rule 54 (final -> MENOS final .)
+    MAS             reduce using rule 54 (final -> MENOS final .)
+    MENOS           reduce using rule 54 (final -> MENOS final .)
+    POR             reduce using rule 54 (final -> MENOS final .)
+    DIV             reduce using rule 54 (final -> MENOS final .)
+    RESIDUO         reduce using rule 54 (final -> MENOS final .)
+    AND             reduce using rule 54 (final -> MENOS final .)
+    OR              reduce using rule 54 (final -> MENOS final .)
+    XOR             reduce using rule 54 (final -> MENOS final .)
+    AND2            reduce using rule 54 (final -> MENOS final .)
+    OR2             reduce using rule 54 (final -> MENOS final .)
+    XOR2            reduce using rule 54 (final -> MENOS final .)
+    DESPLAZAMIENTOIZQ reduce using rule 54 (final -> MENOS final .)
+    DESPLAZAMIENTODER reduce using rule 54 (final -> MENOS final .)
+    PUNTOYCOMA      reduce using rule 54 (final -> MENOS final .)
+
+
+state 58
+
+    (55) final -> READ PARIZQUIERDO . PARDERECHO
+
+    PARDERECHO      shift and go to state 89
+
+
+state 59
+
+    (56) final -> ARRAY PARIZQUIERDO . PARDERECHO
+
+    PARDERECHO      shift and go to state 90
+
+
+state 60
+
+    (18) instruccion_if -> IF PARIZQUIERDO relacional PARDERECHO . GOTO ETIQUETA PUNTOYCOMA
+
+    GOTO            shift and go to state 91
+
+
+state 61
+
+    (45) relacional -> final IGUALIGUAL . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 92
+
+state 62
+
+    (46) relacional -> final DIFERENTE . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 93
+
+state 63
+
+    (47) relacional -> final MAYORIGUAL . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 94
+
+state 64
+
+    (48) relacional -> final MENORIGUAL . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 95
+
+state 65
+
+    (49) relacional -> final MAYOR . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 96
+
+state 66
+
+    (50) relacional -> final MENOR . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 97
+
+state 67
+
+    (19) asignacion -> ID IGUAL operacion PUNTOYCOMA .
+
+    PRINT           reduce using rule 19 (asignacion -> ID IGUAL operacion PUNTOYCOMA .)
+    GOTO            reduce using rule 19 (asignacion -> ID IGUAL operacion PUNTOYCOMA .)
+    EXIT            reduce using rule 19 (asignacion -> ID IGUAL operacion PUNTOYCOMA .)
+    IF              reduce using rule 19 (asignacion -> ID IGUAL operacion PUNTOYCOMA .)
+    ID              reduce using rule 19 (asignacion -> ID IGUAL operacion PUNTOYCOMA .)
+    UNSET           reduce using rule 19 (asignacion -> ID IGUAL operacion PUNTOYCOMA .)
+    ETIQUETA        reduce using rule 19 (asignacion -> ID IGUAL operacion PUNTOYCOMA .)
+    $end            reduce using rule 19 (asignacion -> ID IGUAL operacion PUNTOYCOMA .)
+
+
+state 68
+
+    (29) aritmetica -> final MAS . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 98
+
+state 69
+
+    (30) aritmetica -> final MENOS . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 99
+
+state 70
+
+    (31) aritmetica -> final POR . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 100
+
+state 71
+
+    (32) aritmetica -> final DIV . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 101
+
+state 72
+
+    (33) aritmetica -> final RESIDUO . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 102
+
+state 73
+
+    (35) logica -> final AND . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 103
+
+state 74
+
+    (36) logica -> final OR . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 104
+
+state 75
+
+    (37) logica -> final XOR . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 105
+
+state 76
+
+    (39) bit -> final AND2 . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 106
+
+state 77
+
+    (40) bit -> final OR2 . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 107
+
+state 78
+
+    (41) bit -> final XOR2 . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 108
+
+state 79
+
+    (42) bit -> final DESPLAZAMIENTOIZQ . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 109
+
+state 80
+
+    (43) bit -> final DESPLAZAMIENTODER . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 110
+
+state 81
+
+    (26) conversion -> PARIZQUIERDO INT . PARDERECHO final
+
+    PARDERECHO      shift and go to state 111
+
+
+state 82
+
+    (27) conversion -> PARIZQUIERDO FLOAT . PARDERECHO final
+
+    PARDERECHO      shift and go to state 112
+
+
+state 83
+
+    (28) conversion -> PARIZQUIERDO CHAR . PARDERECHO final
+
+    PARDERECHO      shift and go to state 113
+
+
+state 84
+
+    (34) aritmetica -> ABS PARIZQUIERDO . final PARDERECHO
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 114
+
+state 85
+
+    (38) logica -> NOT final .
+
+    PUNTOYCOMA      reduce using rule 38 (logica -> NOT final .)
+
+
+state 86
+
+    (44) bit -> NOT2 final .
+
+    PUNTOYCOMA      reduce using rule 44 (bit -> NOT2 final .)
+
+
+state 87
+
+    (16) destruir -> UNSET PARIZQUIERDO ID PARDERECHO .
+
+    PRINT           reduce using rule 16 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO .)
+    GOTO            reduce using rule 16 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO .)
+    EXIT            reduce using rule 16 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO .)
+    IF              reduce using rule 16 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO .)
+    ID              reduce using rule 16 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO .)
+    UNSET           reduce using rule 16 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO .)
+    ETIQUETA        reduce using rule 16 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO .)
+    $end            reduce using rule 16 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO .)
+
+
+state 88
+
+    (17) imprimir -> PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA .
+
+    PRINT           reduce using rule 17 (imprimir -> PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA .)
+    GOTO            reduce using rule 17 (imprimir -> PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA .)
+    EXIT            reduce using rule 17 (imprimir -> PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA .)
+    IF              reduce using rule 17 (imprimir -> PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA .)
+    ID              reduce using rule 17 (imprimir -> PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA .)
+    UNSET           reduce using rule 17 (imprimir -> PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA .)
+    ETIQUETA        reduce using rule 17 (imprimir -> PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA .)
+    $end            reduce using rule 17 (imprimir -> PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA .)
+
+
+state 89
+
+    (55) final -> READ PARIZQUIERDO PARDERECHO .
+
+    PARDERECHO      reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    IGUALIGUAL      reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    DIFERENTE       reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    MAYORIGUAL      reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    MENORIGUAL      reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    MAYOR           reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    MENOR           reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    MAS             reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    MENOS           reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    POR             reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    DIV             reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    RESIDUO         reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    AND             reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    OR              reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    XOR             reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    AND2            reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    OR2             reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    XOR2            reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    DESPLAZAMIENTOIZQ reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    DESPLAZAMIENTODER reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+    PUNTOYCOMA      reduce using rule 55 (final -> READ PARIZQUIERDO PARDERECHO .)
+
+
+state 90
+
+    (56) final -> ARRAY PARIZQUIERDO PARDERECHO .
+
+    PARDERECHO      reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    IGUALIGUAL      reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    DIFERENTE       reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    MAYORIGUAL      reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    MENORIGUAL      reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    MAYOR           reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    MENOR           reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    MAS             reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    MENOS           reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    POR             reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    DIV             reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    RESIDUO         reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    AND             reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    OR              reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    XOR             reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    AND2            reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    OR2             reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    XOR2            reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    DESPLAZAMIENTOIZQ reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    DESPLAZAMIENTODER reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+    PUNTOYCOMA      reduce using rule 56 (final -> ARRAY PARIZQUIERDO PARDERECHO .)
+
+
+state 91
+
+    (18) instruccion_if -> IF PARIZQUIERDO relacional PARDERECHO GOTO . ETIQUETA PUNTOYCOMA
+
+    ETIQUETA        shift and go to state 115
+
+
+state 92
+
+    (45) relacional -> final IGUALIGUAL final .
+
+    PARDERECHO      reduce using rule 45 (relacional -> final IGUALIGUAL final .)
+    PUNTOYCOMA      reduce using rule 45 (relacional -> final IGUALIGUAL final .)
+
+
+state 93
+
+    (46) relacional -> final DIFERENTE final .
+
+    PARDERECHO      reduce using rule 46 (relacional -> final DIFERENTE final .)
+    PUNTOYCOMA      reduce using rule 46 (relacional -> final DIFERENTE final .)
+
+
+state 94
+
+    (47) relacional -> final MAYORIGUAL final .
+
+    PARDERECHO      reduce using rule 47 (relacional -> final MAYORIGUAL final .)
+    PUNTOYCOMA      reduce using rule 47 (relacional -> final MAYORIGUAL final .)
+
+
+state 95
+
+    (48) relacional -> final MENORIGUAL final .
+
+    PARDERECHO      reduce using rule 48 (relacional -> final MENORIGUAL final .)
+    PUNTOYCOMA      reduce using rule 48 (relacional -> final MENORIGUAL final .)
+
+
+state 96
+
+    (49) relacional -> final MAYOR final .
+
+    PARDERECHO      reduce using rule 49 (relacional -> final MAYOR final .)
+    PUNTOYCOMA      reduce using rule 49 (relacional -> final MAYOR final .)
+
+
+state 97
+
+    (50) relacional -> final MENOR final .
+
+    PARDERECHO      reduce using rule 50 (relacional -> final MENOR final .)
+    PUNTOYCOMA      reduce using rule 50 (relacional -> final MENOR final .)
+
+
+state 98
+
+    (29) aritmetica -> final MAS final .
+
+    PUNTOYCOMA      reduce using rule 29 (aritmetica -> final MAS final .)
+
+
+state 99
+
+    (30) aritmetica -> final MENOS final .
+
+    PUNTOYCOMA      reduce using rule 30 (aritmetica -> final MENOS final .)
+
+
+state 100
+
+    (31) aritmetica -> final POR final .
+
+    PUNTOYCOMA      reduce using rule 31 (aritmetica -> final POR final .)
+
+
+state 101
+
+    (32) aritmetica -> final DIV final .
+
+    PUNTOYCOMA      reduce using rule 32 (aritmetica -> final DIV final .)
+
+
+state 102
+
+    (33) aritmetica -> final RESIDUO final .
+
+    PUNTOYCOMA      reduce using rule 33 (aritmetica -> final RESIDUO final .)
+
+
+state 103
+
+    (35) logica -> final AND final .
+
+    PUNTOYCOMA      reduce using rule 35 (logica -> final AND final .)
+
+
+state 104
+
+    (36) logica -> final OR final .
+
+    PUNTOYCOMA      reduce using rule 36 (logica -> final OR final .)
+
+
+state 105
+
+    (37) logica -> final XOR final .
+
+    PUNTOYCOMA      reduce using rule 37 (logica -> final XOR final .)
+
+
+state 106
+
+    (39) bit -> final AND2 final .
+
+    PUNTOYCOMA      reduce using rule 39 (bit -> final AND2 final .)
+
+
+state 107
+
+    (40) bit -> final OR2 final .
+
+    PUNTOYCOMA      reduce using rule 40 (bit -> final OR2 final .)
+
+
+state 108
+
+    (41) bit -> final XOR2 final .
+
+    PUNTOYCOMA      reduce using rule 41 (bit -> final XOR2 final .)
+
+
+state 109
+
+    (42) bit -> final DESPLAZAMIENTOIZQ final .
+
+    PUNTOYCOMA      reduce using rule 42 (bit -> final DESPLAZAMIENTOIZQ final .)
+
+
+state 110
+
+    (43) bit -> final DESPLAZAMIENTODER final .
+
+    PUNTOYCOMA      reduce using rule 43 (bit -> final DESPLAZAMIENTODER final .)
+
+
+state 111
+
+    (26) conversion -> PARIZQUIERDO INT PARDERECHO . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 116
+
+state 112
+
+    (27) conversion -> PARIZQUIERDO FLOAT PARDERECHO . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 117
+
+state 113
+
+    (28) conversion -> PARIZQUIERDO CHAR PARDERECHO . final
+    (51) final -> . DECIMAL
+    (52) final -> . ENTERO
+    (53) final -> . ID
+    (54) final -> . MENOS final
+    (55) final -> . READ PARIZQUIERDO PARDERECHO
+    (56) final -> . ARRAY PARIZQUIERDO PARDERECHO
+    (57) final -> . CADENA
+
+    DECIMAL         shift and go to state 33
+    ENTERO          shift and go to state 34
+    ID              shift and go to state 35
+    MENOS           shift and go to state 36
+    READ            shift and go to state 37
+    ARRAY           shift and go to state 38
+    CADENA          shift and go to state 39
+
+    final                          shift and go to state 118
+
+state 114
+
+    (34) aritmetica -> ABS PARIZQUIERDO final . PARDERECHO
+
+    PARDERECHO      shift and go to state 119
+
+
+state 115
+
+    (18) instruccion_if -> IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 120
+
+
+state 116
+
+    (26) conversion -> PARIZQUIERDO INT PARDERECHO final .
+
+    PUNTOYCOMA      reduce using rule 26 (conversion -> PARIZQUIERDO INT PARDERECHO final .)
+
+
+state 117
+
+    (27) conversion -> PARIZQUIERDO FLOAT PARDERECHO final .
+
+    PUNTOYCOMA      reduce using rule 27 (conversion -> PARIZQUIERDO FLOAT PARDERECHO final .)
+
+
+state 118
+
+    (28) conversion -> PARIZQUIERDO CHAR PARDERECHO final .
+
+    PUNTOYCOMA      reduce using rule 28 (conversion -> PARIZQUIERDO CHAR PARDERECHO final .)
+
+
+state 119
+
+    (34) aritmetica -> ABS PARIZQUIERDO final PARDERECHO .
+
+    PUNTOYCOMA      reduce using rule 34 (aritmetica -> ABS PARIZQUIERDO final PARDERECHO .)
+
+
+state 120
+
+    (18) instruccion_if -> IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA .
+
+    PRINT           reduce using rule 18 (instruccion_if -> IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA .)
+    GOTO            reduce using rule 18 (instruccion_if -> IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA .)
+    EXIT            reduce using rule 18 (instruccion_if -> IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA .)
+    IF              reduce using rule 18 (instruccion_if -> IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA .)
+    ID              reduce using rule 18 (instruccion_if -> IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA .)
+    UNSET           reduce using rule 18 (instruccion_if -> IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA .)
+    ETIQUETA        reduce using rule 18 (instruccion_if -> IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA .)
+    $end            reduce using rule 18 (instruccion_if -> IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PRINT in state 6 resolved as shift
+WARNING: shift/reduce conflict for GOTO in state 6 resolved as shift
+WARNING: shift/reduce conflict for EXIT in state 6 resolved as shift
+WARNING: shift/reduce conflict for IF in state 6 resolved as shift
+WARNING: shift/reduce conflict for ID in state 6 resolved as shift
+WARNING: shift/reduce conflict for UNSET in state 6 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 21 resolved as shift
+WARNING: shift/reduce conflict for GOTO in state 21 resolved as shift
+WARNING: shift/reduce conflict for EXIT in state 21 resolved as shift
+WARNING: shift/reduce conflict for IF in state 21 resolved as shift
+WARNING: shift/reduce conflict for ID in state 21 resolved as shift
+WARNING: shift/reduce conflict for UNSET in state 21 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 31 resolved as shift
+WARNING: shift/reduce conflict for GOTO in state 31 resolved as shift
+WARNING: shift/reduce conflict for EXIT in state 31 resolved as shift
+WARNING: shift/reduce conflict for IF in state 31 resolved as shift
+WARNING: shift/reduce conflict for ID in state 31 resolved as shift
+WARNING: shift/reduce conflict for UNSET in state 31 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 55 resolved as shift
+WARNING: shift/reduce conflict for GOTO in state 55 resolved as shift
+WARNING: shift/reduce conflict for EXIT in state 55 resolved as shift
+WARNING: shift/reduce conflict for IF in state 55 resolved as shift
+WARNING: shift/reduce conflict for ID in state 55 resolved as shift
+WARNING: shift/reduce conflict for UNSET in state 55 resolved as shift
