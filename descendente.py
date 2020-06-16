@@ -1,29 +1,16 @@
-import gramaticaAscendente as g
-import gramaticaAscendente as gr
+import gramaticaDescendente as g
 import re
 import tablaDeSimbolos as TS
 from expresiones import *
 from instrucciones import *
 import reportes as h
 
-
-
-
 def procesar_imprimir(instr, ts) :
     cadena=resolver_cadena(instr.cad, ts)
-    a=""
     if cadena.count('\\n')>0:
         print('Jossie>', resolver_cadena(instr.cad, ts).replace("\\n","\nJossie>"))
-        a="Jossie>"
-        a+=resolver_cadena(instr.cad, ts).replace("\\n","\nJossie>")
-        a+="\n"
-        h.textosalida+=a
     else:
         print('Jossie>', resolver_cadena(instr.cad, ts))
-        a="Jossie>"
-        a+=resolver_cadena(instr.cad, ts)
-        a+="\n"
-        h.textosalida+=a
 
 def procesar_asignacion(instr, ts) :  
     if ver_tipo_expresion(instr.expNumerica,ts)==1:
@@ -97,7 +84,6 @@ def resolver_cadena(expCad, ts) :
         return str(resolver_expresion_aritmetica(expCad, ts))
     else :
         print('Error: Expresión cadena no válida')
-        return 'Error: expresion no valida'
 
 
 def resolver_expresion_logica(expLog, ts) :
@@ -262,10 +248,13 @@ def procesar_instrucciones(instrucciones, ts) :
         else : print('Error: instrucción no válida')
 
 def procesar_etiquetas(bloques,ts): 
-
     procesar_instrucciones(bloques,ts)
 
-def ejecucionAscendente(input,input2):
+
+
+import gramaticaDescendente as g
+
+def ejecucionDescendente(input,input2):
     h.textosalida=""
     h.textosalida=input2
     #print("--------------------------------Archivo original---------------------------------------")
@@ -286,39 +275,9 @@ def ejecucionAscendente(input,input2):
 
 
 def genenerarReporteGramaticalAscendente(ruta):
+    h.reporteGramatical1=""
+    h.reporteGramatical2=""
     h.reporteGramatical(ruta)
 
 def genenerarReporteErrores(ruta):
-    h.reporteErrores(ruta)
-
-#f = open("C:\\Users\\Jossie Castrillo\\Desktop\\ArchivosDePrueba\\pruebaj.txt", "r")
-#input = f.read()
-
-#--------------------------------------------------------------------------------------------------------------------------------------------------
-#                    INVOCO GRAMATICA DESCENDENTE :V
-#--------------------------------------------------------------------------------------------------------------------------------------------------
-def ejecucionDescendente(input,input2):
-    h.textosalida=""
-    h.textosalida=input2
-    #print("--------------------------------Archivo original---------------------------------------")
-    #print(input)
-    print("--------------------------------Archivo Ejecucion---------------------------------------")
-    prueba =gr.parse(input)
-    ts_global=TS.TablaDeSimbolos()
-    procesar_etiquetas(prueba,ts_global)
-    print("--------------------------------Reporte Gramatical---------------------------------------")
-    #h.reporteGramatical()
-    #h.graficarAST()
-
-    #ts_global.mostrar(2)
-    #for x in ts_global.simbolos:
-     ##   print(x,"=",ts_global.obtener(x).valor,ts_global.obtener(x).tipo)
-    
-    return h.textosalida
-
-
-def genenerarReporteGramaticalDescendente(ruta):
-    h.reporteGramatical(ruta)
-
-def genenerarReporteErroresDescendente(ruta):
     h.reporteErrores(ruta)

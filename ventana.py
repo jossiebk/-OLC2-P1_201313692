@@ -223,6 +223,7 @@ class Ui_MainWindow(object):
         self.accionReemplazar.triggered.connect(self.buscarReemplazar)
         #funciones de ejecutar
         self.accionAscendente.triggered.connect(self.ejecutar_ascendente)
+        self.accionDescendente.triggered.connect(self.ejecutar_descendente)
         self.accionGramatical.triggered.connect(self.generarReporteGramatical)
         self.accionErrores.triggered.connect(self.generarReporteErrores)
 
@@ -357,7 +358,7 @@ class Ui_MainWindow(object):
         y=self.ConsolaSalida.toPlainText()
         try:
             salida=analizador.ejecucionAscendente(x,y)
-            salida+="\n---------------------FIN EJECUCION--------------------------"
+            salida+="\n---------------------FIN EJECUCION ASCENDENTE--------------------------\n"
         except:
             salida="Jossie>Se genero un error de analisis"
         self.ConsolaSalida.setPlainText(salida)
@@ -367,7 +368,13 @@ class Ui_MainWindow(object):
     
     def ejecutar_descendente(self):
         x=self.EdicionTexto.toPlainText()
-        print(x)
+        y=self.ConsolaSalida.toPlainText()
+        try:
+            salida=analizador.ejecucionDescendente(x,y)
+            salida+="\n---------------------FIN EJECUCION DESCENDENTE--------------------------\n"
+        except:
+            salida="Jossie>Se genero un error de analisis"
+        self.ConsolaSalida.setPlainText(salida)
 
 
     def onTextChanged(self):
