@@ -79,6 +79,7 @@ def reporteErrores(ruta):
     <td>FILA</td>
     <td>COLUMNA</td>
     <td>TIPO</td>
+    <td>MENSAJE</td>
     </tr>"""+errores+"""</table> """
     with open(ruta+".html", "w") as f:
         f.write(var3)

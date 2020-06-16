@@ -143,7 +143,16 @@ def t_newline(t):
     t.lexer.lineno += t.value.count("\n")
 
 def t_error(t):
-    print("Caracter lexico no permitido ==> '%s'" % t.value[0])
+    x=caden.splitlines()
+    filas=len(x)-1
+    print("filas que no cambian: ",filas) 
+    if h.filapivote>0:
+        fila=(t.lineno-1)-h.filapivote*filas
+    else:
+        fila=(t.lineno-1)
+    h.filapivote+=1
+    print("Caracter lexico no permitido ==> '%s'" % t.value)
+    h.errores+=  "<tr><td>"+str(t.value[0])+"</td><td>"+str(fila)+"</td><td>"+str(find_column(caden,t))+"</td><td>LEXICO</td><td>token no pertenece al lenguaje</td></tr>\n"
     t.lexer.skip(1)
 
 # Construyendo el analizador léxico
@@ -446,6 +455,16 @@ def p_artimetica_negativo(t):
     h.reporteGramatical1 +="FINAL    ->      MENOS FINAL\n"
     h.reporteGramatical2 +="t[0]=ExpresionNegativo(t[2])\n"
 
+import ventana as k
+from PyQt5 import QtCore, QtGui, QtWidgets
+def takeinputs(a): 
+    name, done1 = QtWidgets.QInputDialog.getText( 
+        a.ventanaCentrada, 'Input Dialog', 'Enter your name:') 
+    if done1: 
+        print(name)
+        return name
+    return "j"
+
 def p_final_read(t):
     'final              : READ PARIZQUIERDO PARDERECHO'
     x = input('ingrese un valor: ')
@@ -497,7 +516,7 @@ def p_error(t):
      else:
          fila=(t.lineno-1)
      h.filapivote+=1
-     h.errores+=  "<tr><td>"+str(t.value)+"</td><td>"+str(fila)+"</td><td>"+str(find_column(caden,t))+"</td><td>SINTACTICO</td></tr>\n"
+     h.errores+=  "<tr><td>"+str(t.value)+"</td><td>"+str(fila)+"</td><td>"+str(find_column(caden,t))+"</td><td>SINTACTICO</td><td>el token no va aqui</td></tr>\n"
      print("Error sintáctico fila '%s'" % fila)
      print("Error sintáctico col '%s'" % find_column(caden,t))
      if not t:

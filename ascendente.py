@@ -97,6 +97,7 @@ def resolver_cadena(expCad, ts) :
         return str(resolver_expresion_aritmetica(expCad, ts))
     else :
         print('Error: Expresión cadena no válida')
+        h.errores+=  "<tr><td>"+str(expCad)+"</td><td>N/A</td><td>N/A</td><td>SEMANTICO</td><td>expresion no valida</td></tr>\n"
         return 'Error: expresion no valida'
 
 
@@ -123,27 +124,32 @@ def resolver_expresion_aritmetica(expNum, ts) :
             elif re.match('\".*?\"',str(exp1))  and re.match('\".*?\"',str(exp2)):  return exp1 + exp2
             else: 
                 print("error: no se pueden operar distintos tipos")
+                h.errores+=  "<tr><td>"+str(exp1)+"|"+str(exp2)+ "</td><td>N/A</td><td>N/A</td><td>SEMANTICO</td><td>no se pueden operar distintos tipos</td></tr>\n"
                 return 0
         if expNum.operador == OPERACION_ARITMETICA.MENOS : 
             if  re.match('-?\d+',str(exp1))  and re.match('-?\d+',str(exp2)):  return exp1 - exp2
             else: 
                 print("error: no se pueden operar distintos tipos")
+                h.errores+=  "<tr><td>"+str(exp1)+"|"+str(exp2)+ "</td><td>N/A</td><td>N/A</td><td>SEMANTICO</td><td>no se pueden operar distintos tipos</td></tr>\n"
                 return 0
         if expNum.operador == OPERACION_ARITMETICA.POR : 
             if  re.match('-?\d+',str(exp1))  and re.match('-?\d+',str(exp2)):  return exp1 * exp2
             else: 
                 print("error: no se pueden operar distintos tipos")
+                h.errores+=  "<tr><td>"+str(exp1)+"|"+str(exp2)+ "</td><td>N/A</td><td>N/A</td><td>SEMANTICO</td><td>no se pueden operar distintos tipos</td></tr>\n"
                 return 0
         
         if expNum.operador == OPERACION_ARITMETICA.DIVIDIDO : 
             if  re.match('-?\d+',str(exp1))  and re.match('-?\d+',str(exp2)): return exp1 / exp2
             else: 
                 print("error: no se pueden operar distintos tipos")
+                h.errores+=  "<tr><td>"+str(exp1)+"|"+str(exp2)+ "</td><td>N/A</td><td>N/A</td><td>SEMANTICO</td><td>no se pueden operar distintos tipos</td></tr>\n"
                 return 0
         if expNum.operador == OPERACION_ARITMETICA.RESIDUO : 
             if  re.match('-?\d+',str(exp1))  and re.match('-?\d+',str(exp2)): return exp1 % exp2
             else: 
                 print("error: no se pueden operar distintos tipos")
+                h.errores+=  "<tr><td>"+str(exp1)+"|"+str(exp2)+ "</td><td>N/A</td><td>N/A</td><td>SEMANTICO</td><td>no se pueden operar distintos tipos</td></tr>\n"
                 return 0
     elif isinstance(expNum, ExpresionNegativo) :
         exp = resolver_expresion_aritmetica(expNum.exp, ts)
@@ -157,6 +163,8 @@ def resolver_expresion_aritmetica(expNum, ts) :
         return ts.obtener(expNum.id).valor
     elif isinstance(expNum,ExpresionSimpleComilla):
         return expNum.val
+    else:
+        h.errores+=  "<tr><td>"+str(exp1)+"|"+str(exp2)+ "</td><td>N/A</td><td>N/A</td><td>SEMANTICO</td><td>error de operacion</td></tr>\n"
     
 
 def resolver_expresion_bit(expBit,ts):
@@ -189,7 +197,8 @@ def convertirEntero(valor):
     elif re.match('[0-9]+.[0-9]+',str(valor)): 
         return int(valor)
     else: 
-        print("error: no se puede castear ese tipo de dato")       
+        print("error: no se puede castear ese tipo de dato") 
+        h.errores+=  "<tr><td>"+str(valor)+ "</td><td>N/A</td><td>N/A</td><td>SEMANTICO</td><td>no se puede castear ese tipo de dato</td></tr>\n"      
     return 0
 
 def convertirFlotante(valor):
@@ -203,7 +212,8 @@ def convertirFlotante(valor):
     elif re.match('[0-9]+.[0-9]+',str(valor)): 
         return float(valor)
     else: 
-        print("error: no se puede castear ese tipo de dato")       
+        print("error: no se puede castear ese tipo de dato") 
+        h.errores+=  "<tr><td>"+str(valor)+ "</td><td>N/A</td><td>N/A</td><td>SEMANTICO</td><td>no se puede castear ese tipo de dato</td></tr>\n"        
     return 0
 
 def convertirCaracter(valor):
@@ -217,7 +227,8 @@ def convertirCaracter(valor):
     elif re.match('[0-9]+.[0-9]+',str(valor)): 
         return 0
     else: 
-        print("error: no se puede castear ese tipo de dato")       
+        print("error: no se puede castear ese tipo de dato")  
+        h.errores+=  "<tr><td>"+str(valor)+ "</td><td>N/A</td><td>N/A</td><td>SEMANTICO</td><td>no se puede castear ese tipo de dato</td></tr>\n"       
     return 0
 
 def resolver_expresion_relacional(expRel,ts):
@@ -259,7 +270,10 @@ def procesar_instrucciones(instrucciones, ts) :
         elif isinstance(instr,Asignacion): procesar_asignacion(instr,ts)
         elif isinstance(instr, If) : procesar_if(instr, ts)
         elif isinstance(instr,Salida): break
-        else : print('Error: instrucción no válida')
+        else : 
+            print('Error: instrucción no válida')
+            h.errores+=  "<tr><td>"+str(instr)+ "</td><td>N/A</td><td>N/A</td><td>SEMANTICO</td><td>la instruccion no es valida</td></tr>\n"  
+
 
 def procesar_etiquetas(bloques,ts): 
 

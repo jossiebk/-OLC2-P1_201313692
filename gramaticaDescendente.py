@@ -142,7 +142,16 @@ def t_newline(t):
     t.lexer.lineno += t.value.count("\n")
 
 def t_error(t):
-    print("Caracter lexico no permitido ==> '%s'" % t.value[0])
+    x=caden.splitlines()
+    filas=len(x)-1
+    print("filas que no cambian: ",filas) 
+    if h.filapivote>0:
+        fila=(t.lineno-1)-h.filapivote*filas
+    else:
+        fila=(t.lineno-1)
+    h.filapivote+=1
+    print("Caracter lexico no permitido ==> '%s'" % t.value)
+    h.errores+=  "<tr><td>"+str(t.value[0])+"</td><td>"+str(fila)+"</td><td>"+str(find_column(caden,t))+"</td><td>LEXICO</td><td>token no pertenece al lenguaje</td></tr>\n"
     t.lexer.skip(1)
 
 # Construyendo el analizador léxico
@@ -400,10 +409,37 @@ def p_empty(t):
     'empty :'
     t[0]=t[-3]
 
-#para manejar los errores sintacticos
-def p_error(t): #en modo panico :v
-    print("token error: ",t)
-    print("Error sintáctico en '%s'" % t)
+def find_column(input, token):
+    line_start = input.rfind('\n', 0, token.lexpos) + 1
+    #print((token.lexpos - line_start) +1 )
+    return (token.lexpos - line_start) 
+
+
+def p_error(t):
+     print("token: '%s'" %t)
+     print("Error sintáctico en '%s' " % t.value)
+     #h.filapivote+=1
+     x=caden.splitlines()
+     filas=len(x)-1
+     print("filas que no cambian: ",filas)
+     
+     if h.filapivote>0:
+         fila=(t.lineno-1)-h.filapivote*filas
+     else:
+         fila=(t.lineno-1)
+     h.filapivote+=1
+     h.errores+=  "<tr><td>"+str(t.value)+"</td><td>"+str(fila)+"</td><td>"+str(find_column(caden,t))+"</td><td>SINTACTICO</td><td>el token no va aqui</td></tr>\n"
+     print("Error sintáctico fila '%s'" % fila)
+     print("Error sintáctico col '%s'" % find_column(caden,t))
+     if not t:
+         print("End of File!")
+         return
+     # Read ahead looking for a closing '}'
+     while True:
+         tok = parser.token()             # Get the next token
+         if not tok or tok.type == 'PUNTOYCOMA': 
+             break
+     parser.restart()
 
 
 
@@ -412,4 +448,7 @@ import ply.yacc as yacc
 parser = yacc.yacc()
 
 def parse(input) :
+    global caden
+    caden=""
+    caden=input
     return parser.parse(input)

@@ -239,7 +239,7 @@ class Ui_MainWindow(object):
         self.iconoGuardarComo.clicked.connect(self.guardar_como)
         self.iconoDescendente.clicked.connect(self.ejecutar_descendente)
         self.iconoAscendente.clicked.connect(self.ejecutar_ascendente)
-        #self.iconoDebug.clicked.connect(self.abrir_archivo)
+        self.iconoDebug.clicked.connect(self.takeinputs)
         self.iconoNuevo.clicked.connect(lambda: self.EdicionTexto.insertPlainText(""))
 
     def retranslateUi(self, MainWindow):
@@ -425,6 +425,16 @@ class Ui_MainWindow(object):
             #esa ruta se envia con el texto del editor al metodo guardarArchivo
         except:
             self.ventanaEmergente("no se genero el reporte :(")
+    
+    def takeinputs(self): 
+        name, done1 = QtWidgets.QInputDialog.getText( 
+            self.ventanaCentrada, 'Input Dialog', 'Enter your name:') 
+        if done1: 
+             # Showing confirmation message along 
+             # with information provided by user.  
+            print(name)
+            return name
+        return "j"
         
 
 #inicializacion del main y su interfaz para ejecucion
