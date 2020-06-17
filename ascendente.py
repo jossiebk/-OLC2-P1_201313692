@@ -340,8 +340,7 @@ def ejecucionAscendente(input,input2):
     procesar_etiquetas(ts_global,"main")
     print("--------------------------------Reporte simbolos---------------------------------------")
     #ts_global.mostrar(2)
-    for x in ts_global.simbolos:
-       print(x,"=",ts_global.obtener(x).valor,ts_global.obtener(x).tipo)
+    
     
     return h.textosalida
 
@@ -351,6 +350,24 @@ def genenerarReporteGramaticalAscendente(ruta):
 
 def genenerarReporteErrores(ruta):
     h.reporteErrores(ruta)
+
+def generarReporteSimbolos(ruta):
+    print(ruta)
+    val=""
+    ts_global=TS.TablaDeSimbolos()
+    for x in ts_global.simbolos:
+        tipo=""
+        print(x,"=",ts_global.obtener(x).valor,ts_global.obtener(x).tipo)
+        if  re.match('[a-zA-Z].*?',str(ts_global.obtener(x).valor)): tipo="CARACTER"
+        elif re.match('[0-9]+',str(ts_global.obtener(x).valor)): tipo="NUMERO"
+        elif re.match('[0-9]+.[0-9]+',str(ts_global.obtener(x).valor)): tipo="FLOTANTE"
+        print("sale del if")
+        val+="<td>"+str(x)+"</td><td>"+str(ts_global.obtener(x).valor)+"</td><td>"+tipo+"</td>\n"
+    #construyo el archivo html
+    print("manda los datos")
+    h.reporteSimbolos(ruta,val)
+    
+
 
 #f = open("C:\\Users\\Jossie Castrillo\\Desktop\\ArchivosDePrueba\\pruebaj.txt", "r")
 #input = f.read()

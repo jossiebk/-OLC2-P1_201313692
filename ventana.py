@@ -226,6 +226,7 @@ class Ui_MainWindow(object):
         self.accionDescendente.triggered.connect(self.ejecutar_descendente)
         self.accionGramatical.triggered.connect(self.generarReporteGramatical)
         self.accionErrores.triggered.connect(self.generarReporteErrores)
+        self.accionSimbolos.triggered.connect(self.generarReporteSimbolos)
 
 
         #funciones de opciones
@@ -426,6 +427,18 @@ class Ui_MainWindow(object):
         except:
             self.ventanaEmergente("no se genero el reporte :(")
     
+    def generarReporteSimbolos(self):
+        try:
+            name = QtWidgets.QFileDialog.getSaveFileName(None, 'Save File')
+            print(name[0])
+            analizador.generarReporteSimbolos(name[0])
+            self.ventanaEmergente("Si se genero el reporte :D!")
+            #abre un file chooser para seleccionar un lugar para guardar el archivo y permite escribir el nombre con su extension.
+            #esa ruta se envia con el texto del editor al metodo guardarArchivo
+        except:
+            self.ventanaEmergente("no se genero el reporte :(")
+
+
     def takeinputs(self): 
         name, done1 = QtWidgets.QInputDialog.getText( 
             self.ventanaCentrada, 'Input Dialog', 'Enter your name:') 
