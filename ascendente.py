@@ -82,13 +82,30 @@ def ver_tipo_expresion(exp,ts):
     
 
 def procesar_if(instr, ts) :
-    val = resolver_expresion_logica(instr.expLogica, ts)
-    if val :
-        ts_local = TS.TablaDeSimbolos(ts.simbolos)
-        procesar_instrucciones(instr.instrIfVerdadero, ts_local)
-    else :
-        ts_local = TS.TablaDeSimbolos(ts.simbolos)
-        procesar_instrucciones(instr.instrIfFalso, ts_local)
+    print("entra al if")
+    print("la expresion logica es:   ",instr.expLogica)
+    val = resolver_expresion_relacional(instr.expLogica, ts)
+    print("val es:   ",val)
+    if val==1:
+        procesar_salto_if(instr.instrIfFalso,ts)
+
+def procesar_salto_if(instr,ts):
+    print(h.todo)
+    for i in h.todo:
+        print("====> ",i)
+        a=i[0]
+        b=i[1]
+        print(a)
+        print(b)
+        if a==instr :
+            print("encuentra la etiqueta")
+            procesar_instrucciones(b,ts)
+        else:
+            print("nel")
+            #procesar_instrucciones(b,ts)
+
+
+
 
 def resolver_cadena(expCad, ts) :
     if isinstance(expCad, ExpresionSimpleComilla) :
@@ -232,6 +249,7 @@ def convertirCaracter(valor):
     return 0
 
 def resolver_expresion_relacional(expRel,ts):
+    print("entro a RELACIONAL")
     exp1= resolver_expresion_aritmetica(expRel.exp1,ts)
     exp2= resolver_expresion_aritmetica(expRel.exp2,ts)
     if expRel.operador == OPERACION_RELACIONAL.IGUAL_IGUAL : return resolverLogica(exp1,exp2,1)
@@ -277,7 +295,6 @@ def procesar_instrucciones(instrucciones, ts) :
             h.errores+=  "<tr><td>"+str(instr)+ "</td><td>N/A</td><td>N/A</td><td>SEMANTICO</td><td>la instruccion no es valida</td></tr>\n"  
 
 def procesar_salto(instr,ts):
-    print("entra al goto")
     a=instr.etiqueta
     print(a)
     print(len(h.todo))
@@ -321,13 +338,10 @@ def ejecucionAscendente(input,input2):
     h.todo=prueba
     print("--------------------------------divisor---------------------------------------------------")
     procesar_etiquetas(ts_global,"main")
-    print("--------------------------------Reporte Gramatical---------------------------------------")
-    #h.reporteGramatical()
-    #h.graficarAST()
-
+    print("--------------------------------Reporte simbolos---------------------------------------")
     #ts_global.mostrar(2)
-    #for x in ts_global.simbolos:
-     ##   print(x,"=",ts_global.obtener(x).valor,ts_global.obtener(x).tipo)
+    for x in ts_global.simbolos:
+       print(x,"=",ts_global.obtener(x).valor,ts_global.obtener(x).tipo)
     
     return h.textosalida
 
