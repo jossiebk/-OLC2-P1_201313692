@@ -180,29 +180,39 @@ from expresiones import *
 from instrucciones import *
 
 # estructura de mi gramatica
-
 def p_inicio(t) :
-    'inicio               : MAIN DOSPUNTOS bloque'
-    t[0]=t[3]
+    'inicio               : ETIQUETA DOSPUNTOS instrucciones inicio'
+    #print(h.q)
+    print("entra a inicio 1")
+    if t[4]!=None:
+        h.insertarSimbolos(t[4])
+    p=[t[1],t[3]]
 
+    if t[1]=="main":
+        print("este si es main")
+        h.insertarSimbolos(p)
+        h.q.reverse()
+        contador=0
+        for i in h.q:
+            if  i!=0:
+                contador+=1
+        print(contador)
+        t[0]=h.q[0:contador]
+    elif p!=None:
+        h.insertarSimbolos(p)
+    #para el reporte gramatical
+    h.reporteGramatical1 +="INICIO     ->      MAIN DOSPUNTOS  bloque\n"
+    h.reporteGramatical2 +="t[0] = t[1]\n"
+    
+    
 
-def p_bloque_lista(t):
-    '''bloque             : bloque ETIQUETA DOSPUNTOS instrucciones
-                          | bloque instrucciones'''
-    if t[3]==':': 
-        t[1].append(t[4])
-        t[0]=t[1]
-    else:
-        t[1].append(t[2])
-        t[0]=t[1]     
- 
-def p_bloque(t):
-    'bloque             : ETIQUETA DOSPUNTOS instrucciones'
-    t[0]=t[3]
+def p_inicio_b(t) :
+    'inicio               : ETIQUETA DOSPUNTOS instrucciones'
+    print("entra a inicio 2")
+    t[0]=[t[1],t[3]]
+   
+    print("+++++++ ",t[0])
 
-def p_bloque2(t):
-    'bloque             : instrucciones'
-    t[0]=t[1]
 
 def p_instrucciones_lista(t) :
     '''instrucciones    : instrucciones instruccion '''

@@ -61,3 +61,13 @@ class Etiquetas(Instruccion) :
         self.id = id
         self.sentencias = sentencias
 
+class Goto(Instruccion) :
+    '''
+        Esta clase representa un bloque de instrucciones con su tag
+        Recibe como parámetro la etiqueta del bloque y sus sentencias o instruciones y eso
+    '''
+
+    def __init__(self, etiqueta) :
+        self.etiqueta = etiqueta
+
+

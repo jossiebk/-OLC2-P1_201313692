@@ -270,24 +270,57 @@ def procesar_instrucciones(instrucciones, ts) :
         elif isinstance(instr,Asignacion): procesar_asignacion(instr,ts)
         elif isinstance(instr, If) : procesar_if(instr, ts)
         elif isinstance(instr,Salida): break
+        elif isinstance(instr,Goto) : procesar_salto(instr,ts)
+        #elif
         else : 
             print('Error: instrucción no válida')
             h.errores+=  "<tr><td>"+str(instr)+ "</td><td>N/A</td><td>N/A</td><td>SEMANTICO</td><td>la instruccion no es valida</td></tr>\n"  
 
+def procesar_salto(instr,ts):
+    print("entra al goto")
+    a=instr.etiqueta
+    print(a)
+    print(len(h.todo))
+    for i in h.todo:
+        b=i[0]
+        c=i[1]
+        if a==b:
+            procesar_instrucciones(c,ts)
+            print("tag del momento: ",i)
+    else:
+        print("La etiqueta o metodo no existe")
 
-def procesar_etiquetas(bloques,ts): 
 
-    procesar_instrucciones(bloques,ts)
+def procesar_etiquetas(ts,tag):
+    print(h.todo)
+    for i in h.todo:
+        print("====> ",i)
+        a=i[0]
+        b=i[1]
+        print(a)
+        print(b)
+        if a==tag :
+            print("entra al main")
+            procesar_instrucciones(b,ts)
+            
+        else:
+            print("nel")
+            #procesar_instrucciones(b,ts)
+
+
 
 def ejecucionAscendente(input,input2):
     h.textosalida=""
     h.textosalida=input2
+    h.q.clear()
     #print("--------------------------------Archivo original---------------------------------------")
     #print(input)
     print("--------------------------------Archivo Ejecucion---------------------------------------")
     prueba =g.parse(input)
     ts_global=TS.TablaDeSimbolos()
-    procesar_etiquetas(prueba,ts_global)
+    h.todo=prueba
+    print("--------------------------------divisor---------------------------------------------------")
+    procesar_etiquetas(ts_global,"main")
     print("--------------------------------Reporte Gramatical---------------------------------------")
     #h.reporteGramatical()
     #h.graficarAST()
@@ -314,12 +347,15 @@ def genenerarReporteErrores(ruta):
 def ejecucionDescendente(input,input2):
     h.textosalida=""
     h.textosalida=input2
+    h.q.clear()
     #print("--------------------------------Archivo original---------------------------------------")
     #print(input)
     print("--------------------------------Archivo Ejecucion---------------------------------------")
     prueba =gr.parse(input)
     ts_global=TS.TablaDeSimbolos()
-    procesar_etiquetas(prueba,ts_global)
+    h.todo=prueba
+    print("--------------------------------divisor---------------------------------------------------")
+    procesar_etiquetas(ts_global,"main")
     print("--------------------------------Reporte Gramatical---------------------------------------")
     #h.reporteGramatical()
     #h.graficarAST()
@@ -327,7 +363,6 @@ def ejecucionDescendente(input,input2):
     #ts_global.mostrar(2)
     #for x in ts_global.simbolos:
      ##   print(x,"=",ts_global.obtener(x).valor,ts_global.obtener(x).tipo)
-    
     return h.textosalida
 
 

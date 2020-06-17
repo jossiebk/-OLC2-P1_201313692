@@ -86,3 +86,15 @@ def reporteErrores(ruta):
         f.closed
 
         
+
+global todo
+todo=[]
+
+global q
+q=[]
+def insertarSimbolos(var):
+    for i in q:
+        if i==0:
+            q.append(var)
+            #print("numeral ",i)
+            return
