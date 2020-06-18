@@ -259,7 +259,7 @@ def p_salto(t):
 def p_destruir(t):
     'destruir          : UNSET PARIZQUIERDO ID PARDERECHO PUNTOYCOMA' 
     t[0]=Unset(t[3])
-    h.reporteGramatical1 +="DESTRUIR   ->      UNSET PARIZQUIERDO ID PARDERECHO\n"
+    h.reporteGramatical1 +="DESTRUIR   ->      UNSET PARIZQUIERDO ID PARDERECHO PUNTOYCOMA\n"
     h.reporteGramatical2 +="t[0] = \n"
 
 def p_imprimir_instruccion(t) :

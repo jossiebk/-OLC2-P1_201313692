@@ -1,0 +1,68 @@
+Gramatica Ascendente
+
+inicio		: ETIQUETA DOSPUNTOS instrucciones inicio
+		| ETIQUETA DOSPUNTOS instrucciones
+
+instrucciones	: instrucciones instruccion
+		        | instruccion
+
+instruccion	: imprimir
+		    | salto
+		    | salida
+	    	| instruccion_if
+		    | asignacion
+		    | destruir
+
+salida		: EXIT PUNTOYCOMA
+
+salto		: GOTO ETIQUETA PUNTOYCOMA
+
+destruir	: UNSET PARIZQUIERDO ID PARDERECHO PUNTOYCOMA
+
+imprimir	: PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA
+
+
+instruccion_if	: IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA
+
+asignacion	: ID IGUAL operacion PUNTOYCOMA
+
+operacion	: conversion
+		    | aritmetica
+		    | logica
+		    | bit
+		    | relacional
+		    | final
+
+aritmetica	: final MAS final
+		    | final MENOS final
+		    | final POR final
+		    | final DIV final
+		    | final RESIDUO final
+		    | ABS PARIZQUIERDO final PARDERECHO
+
+logica		: final AND final
+		    | final OR final
+		    | final XOR final
+		    | NOT final
+
+bit		: final AND2 final
+		| final OR2 final
+		| final XOR2 final
+		| final DESPLAZAMIENTOIZQ final
+		| final DESPLAZAMIENTODER final
+		| NOT2 final
+
+relacional	: final IGUALIGUAL final
+		    | final DIFERENTE final
+		    | final MAYORIGUAL final
+		    | final MENORIGUAL final
+		    | final MAYOR final
+		    | final MENOR final
+
+final		: DECIMAL
+		    | ENTERO
+		    | ID
+		    | MENOS final %prec UMENOS
+		    | READ PARIZQUIERDO PARDERECHO
+		    | ARRAY PARIZQUIERDO PARDERECHO
+		    | CADENA
