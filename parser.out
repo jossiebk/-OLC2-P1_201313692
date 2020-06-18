@@ -20,7 +20,7 @@ Rule 9     instruccion -> asignacion
 Rule 10    instruccion -> destruir
 Rule 11    salida -> EXIT PUNTOYCOMA
 Rule 12    salto -> GOTO ETIQUETA PUNTOYCOMA
-Rule 13    destruir -> UNSET PARIZQUIERDO ID PARDERECHO
+Rule 13    destruir -> UNSET PARIZQUIERDO ID PARDERECHO PUNTOYCOMA
 Rule 14    imprimir -> PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA
 Rule 15    instruccion_if -> IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA
 Rule 16    asignacion -> ID IGUAL operacion PUNTOYCOMA
@@ -103,7 +103,7 @@ PARDERECHO           : 13 14 15 23 24 25 31 52 53
 PARIZQUIERDO         : 13 14 15 23 24 25 31 52 53
 POR                  : 28
 PRINT                : 14
-PUNTOYCOMA           : 11 12 14 15 16
+PUNTOYCOMA           : 11 12 13 14 15 16
 READ                 : 52
 RESIDUO              : 30
 UNSET                : 13
@@ -173,7 +173,7 @@ state 3
     (11) salida -> . EXIT PUNTOYCOMA
     (15) instruccion_if -> . IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA
     (16) asignacion -> . ID IGUAL operacion PUNTOYCOMA
-    (13) destruir -> . UNSET PARIZQUIERDO ID PARDERECHO
+    (13) destruir -> . UNSET PARIZQUIERDO ID PARDERECHO PUNTOYCOMA
 
     PRINT           shift and go to state 12
     GOTO            shift and go to state 13
@@ -209,7 +209,7 @@ state 4
     (11) salida -> . EXIT PUNTOYCOMA
     (15) instruccion_if -> . IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA
     (16) asignacion -> . ID IGUAL operacion PUNTOYCOMA
-    (13) destruir -> . UNSET PARIZQUIERDO ID PARDERECHO
+    (13) destruir -> . UNSET PARIZQUIERDO ID PARDERECHO PUNTOYCOMA
 
     $end            reduce using rule 2 (inicio -> ETIQUETA DOSPUNTOS instrucciones .)
     ETIQUETA        shift and go to state 2
@@ -364,7 +364,7 @@ state 16
 
 state 17
 
-    (13) destruir -> UNSET . PARIZQUIERDO ID PARDERECHO
+    (13) destruir -> UNSET . PARIZQUIERDO ID PARDERECHO PUNTOYCOMA
 
     PARIZQUIERDO    shift and go to state 25
 
@@ -524,7 +524,7 @@ state 24
 
 state 25
 
-    (13) destruir -> UNSET PARIZQUIERDO . ID PARDERECHO
+    (13) destruir -> UNSET PARIZQUIERDO . ID PARDERECHO PUNTOYCOMA
 
     ID              shift and go to state 48
 
@@ -866,7 +866,7 @@ state 47
 
 state 48
 
-    (13) destruir -> UNSET PARIZQUIERDO ID . PARDERECHO
+    (13) destruir -> UNSET PARIZQUIERDO ID . PARDERECHO PUNTOYCOMA
 
     PARDERECHO      shift and go to state 80
 
@@ -1397,16 +1397,9 @@ state 79
 
 state 80
 
-    (13) destruir -> UNSET PARIZQUIERDO ID PARDERECHO .
+    (13) destruir -> UNSET PARIZQUIERDO ID PARDERECHO . PUNTOYCOMA
 
-    ETIQUETA        reduce using rule 13 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO .)
-    PRINT           reduce using rule 13 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO .)
-    GOTO            reduce using rule 13 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO .)
-    EXIT            reduce using rule 13 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO .)
-    IF              reduce using rule 13 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO .)
-    ID              reduce using rule 13 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO .)
-    UNSET           reduce using rule 13 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO .)
-    $end            reduce using rule 13 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO .)
+    PUNTOYCOMA      shift and go to state 108
 
 
 state 81
@@ -1481,7 +1474,7 @@ state 84
 
     (15) instruccion_if -> IF PARIZQUIERDO relacional PARDERECHO GOTO . ETIQUETA PUNTOYCOMA
 
-    ETIQUETA        shift and go to state 108
+    ETIQUETA        shift and go to state 109
 
 
 state 85
@@ -1642,7 +1635,7 @@ state 104
     ARRAY           shift and go to state 32
     CADENA          shift and go to state 33
 
-    final                          shift and go to state 109
+    final                          shift and go to state 110
 
 state 105
 
@@ -1663,7 +1656,7 @@ state 105
     ARRAY           shift and go to state 32
     CADENA          shift and go to state 33
 
-    final                          shift and go to state 110
+    final                          shift and go to state 111
 
 state 106
 
@@ -1684,51 +1677,65 @@ state 106
     ARRAY           shift and go to state 32
     CADENA          shift and go to state 33
 
-    final                          shift and go to state 111
+    final                          shift and go to state 112
 
 state 107
 
     (31) aritmetica -> ABS PARIZQUIERDO final . PARDERECHO
 
-    PARDERECHO      shift and go to state 112
+    PARDERECHO      shift and go to state 113
 
 
 state 108
 
-    (15) instruccion_if -> IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA . PUNTOYCOMA
+    (13) destruir -> UNSET PARIZQUIERDO ID PARDERECHO PUNTOYCOMA .
 
-    PUNTOYCOMA      shift and go to state 113
+    ETIQUETA        reduce using rule 13 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO PUNTOYCOMA .)
+    PRINT           reduce using rule 13 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO PUNTOYCOMA .)
+    GOTO            reduce using rule 13 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO PUNTOYCOMA .)
+    EXIT            reduce using rule 13 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO PUNTOYCOMA .)
+    IF              reduce using rule 13 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO PUNTOYCOMA .)
+    ID              reduce using rule 13 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO PUNTOYCOMA .)
+    UNSET           reduce using rule 13 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO PUNTOYCOMA .)
+    $end            reduce using rule 13 (destruir -> UNSET PARIZQUIERDO ID PARDERECHO PUNTOYCOMA .)
 
 
 state 109
+
+    (15) instruccion_if -> IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 114
+
+
+state 110
 
     (23) conversion -> PARIZQUIERDO INT PARDERECHO final .
 
     PUNTOYCOMA      reduce using rule 23 (conversion -> PARIZQUIERDO INT PARDERECHO final .)
 
 
-state 110
+state 111
 
     (24) conversion -> PARIZQUIERDO FLOAT PARDERECHO final .
 
     PUNTOYCOMA      reduce using rule 24 (conversion -> PARIZQUIERDO FLOAT PARDERECHO final .)
 
 
-state 111
+state 112
 
     (25) conversion -> PARIZQUIERDO CHAR PARDERECHO final .
 
     PUNTOYCOMA      reduce using rule 25 (conversion -> PARIZQUIERDO CHAR PARDERECHO final .)
 
 
-state 112
+state 113
 
     (31) aritmetica -> ABS PARIZQUIERDO final PARDERECHO .
 
     PUNTOYCOMA      reduce using rule 31 (aritmetica -> ABS PARIZQUIERDO final PARDERECHO .)
 
 
-state 113
+state 114
 
     (15) instruccion_if -> IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA .
 

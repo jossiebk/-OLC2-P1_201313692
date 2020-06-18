@@ -203,7 +203,7 @@ def p_inicio(t) :
     elif p!=None:
         h.insertarSimbolos(p)
     #para el reporte gramatical
-    h.reporteGramatical1 +="INICIO     ->      MAIN DOSPUNTOS  bloque\n"
+    h.reporteGramatical1 +="INICIO     ->      ETIQUETA DOSPUNTOS  INSTRUCCIONES INICIO\n"
     h.reporteGramatical2 +="t[0] = t[1]\n"
     
     
@@ -212,8 +212,9 @@ def p_inicio_b(t) :
     'inicio               : ETIQUETA DOSPUNTOS instrucciones'
     print("entra a inicio 2")
     t[0]=[t[1],t[3]]
-   
     print("+++++++ ",t[0])
+    h.reporteGramatical1 +="INICIO     ->      ETIQUETA DOSPUNTOS INSTRUCCIONES\n"
+    h.reporteGramatical2 +="T[0]=[t[1],t[3]]\n"
 
 def p_instrucciones_lista(t) :
     '''instrucciones    : instrucciones instruccion '''
@@ -256,7 +257,8 @@ def p_salto(t):
     h.reporteGramatical2 +="t[0] = \n"
 
 def p_destruir(t):
-    'destruir          : UNSET PARIZQUIERDO ID PARDERECHO'
+    'destruir          : UNSET PARIZQUIERDO ID PARDERECHO PUNTOYCOMA' 
+    t[0]=Unset(t[3])
     h.reporteGramatical1 +="DESTRUIR   ->      UNSET PARIZQUIERDO ID PARDERECHO\n"
     h.reporteGramatical2 +="t[0] = \n"
 

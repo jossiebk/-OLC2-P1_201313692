@@ -233,6 +233,7 @@ class Ui_MainWindow(object):
         self.accionColor.triggered.connect(lambda: self.cambiarColor())
         #funciones de ayuda
         self.accionAcerca.triggered.connect(lambda: self.ventanaAcercaDe("hola"))
+        self.accionAyuda.triggered.connect(lambda : self.ventanaEmergente("para ayuda pregunte al desarrollador :'v"))
       
         #acciones de los botoncitos destemplados :v
         self.iconoAbrir.clicked.connect(self.abrir_archivo)

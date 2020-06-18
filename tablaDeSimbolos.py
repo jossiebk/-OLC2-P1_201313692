@@ -24,15 +24,16 @@ class TablaDeSimbolos() :
         self.simbolos[simbolo.id] = simbolo
     
     def obtener(self, id) :
+        print("a este entra")
         if not id in self.simbolos :
-            print('Error: variable ', id, ' no definida.')
-
+            print('Error1: variable ', id, ' no definida.')
+            return("no definida")
         return self.simbolos[id]
 
     def actualizar(self, simbolo) :
         #print("===>",simbolo.id)
         if not simbolo.id in self.simbolos :
-            print('Error: variable ', simbolo.id, ' no definida.')
+            print('Error2: variable ', simbolo.id, ' no definida.')
         else :
             self.simbolos[simbolo.id] = simbolo
 
@@ -40,4 +41,11 @@ class TablaDeSimbolos() :
         print(str(var))
         for x in self.simbolos:
             print(x)
-        
+    def destruir(self,simbolo):
+        print("########################### simbolos>",str(simbolo.id))
+        if not simbolo.id in self.simbolos :
+            print('Error3: variable ', simbolo.id, ' no definida.')
+        else :
+            self.simbolos[simbolo.id] = simbolo
+            del self.simbolos[simbolo.id]
+            print("si lo elimina")

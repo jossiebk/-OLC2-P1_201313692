@@ -201,8 +201,8 @@ def p_inicio(t) :
     elif p!=None:
         h.insertarSimbolos(p)
     #para el reporte gramatical
-    h.reporteGramatical1 +="INICIO     ->      MAIN DOSPUNTOS  bloque\n"
-    h.reporteGramatical2 +="t[0] = t[1]\n"
+    h.reporteGramatical1 +="INICIO     ->      ETIQUETA DOSPUNTOS INSTRUCCIONES INICIO\n"
+    h.reporteGramatical2 +="validacion de cadena y almacenamiento\n"
     
     
 
@@ -210,14 +210,18 @@ def p_inicio_b(t) :
     'inicio               : ETIQUETA DOSPUNTOS instrucciones'
     print("entra a inicio 2")
     t[0]=[t[1],t[3]]
-   
     print("+++++++ ",t[0])
+    h.reporteGramatical1 +="INICIO     ->      ETIQUETA DOSPUNTOS INSTRUCCIONES\n"
+    h.reporteGramatical2 +="T[0]=[t[1],t[3]]\n"
 
 
 def p_instrucciones_lista(t) :
     '''instrucciones    : instrucciones instruccion '''
     t[1].append(t[2])
     t[0]=t[1]
+    h.reporteGramatical1 +="INSTRUCCIONES     ->      INSTRUCCIONES INSTRUCCION\n"
+    h.reporteGramatical2 +="""t[1].append(t[2)]\n
+    t[0] = t[1]\n"""
 
 def p_instrucciones_instruccion(t) :
     'instrucciones    : instruccion '
@@ -231,28 +235,44 @@ def p_instruccion(t) :
                         | asignacion
                         | destruir'''
     t[0]=t[1]
+    h.reporteGramatical1 +="INSTRUCCION     ->      Lista de instrucciones\n"
+    h.reporteGramatical2 +="t[0] = t[1]\n"
    
 def p_salida(t):
     'salida             : EXIT PUNTOYCOMA'
     t[0]=Salida(t[1])
+    h.reporteGramatical1 +="EXIT    ->      EXIT PUNTOYCOMA\n"
+    h.reporteGramatical2 +="t[0] = Salida(t[1])\n"
 
 def p_salto(t):
     'salto             : GOTO ETIQUETA PUNTOYCOMA'
+    t[0]=Goto(t[2])
+    h.reporteGramatical1 +="SALTO    ->      GOTO ETIQUETA PUNTOYCOMA\n"
+    h.reporteGramatical2 +="t[0] = \n"
 
 def p_destruir(t):
     'destruir          : UNSET PARIZQUIERDO ID PARDERECHO'
+    h.reporteGramatical1 +="DESTRUIR   ->      UNSET PARIZQUIERDO ID PARDERECHO\n"
+    h.reporteGramatical2 +="t[0] = \n"
 
 def p_imprimir_instruccion(t) :
     'imprimir     : PRINT PARIZQUIERDO final PARDERECHO PUNTOYCOMA'
     t[0]=Imprimir(t[3])
+    h.reporteGramatical1 +="EXIT    ->      EXIT PUNTOYCOMA\n"
+    h.reporteGramatical2 +="t[0] = Imprimir(t[3])\n"
+    
 
 def p_instruccion_if(t):
     'instruccion_if     : IF PARIZQUIERDO relacional PARDERECHO GOTO ETIQUETA PUNTOYCOMA'
     t[0]=If(t[3],t[6])
+    h.reporteGramatical1 +="INSTRUCCION_IF    ->      IF PARIZQUIERDO RELACIONAL PARDERECHO GOTO ETIQUETA PUNTOYCOMA\n"
+    h.reporteGramatical2 +="t[0] =  If(t[3],t[6])\n"
 
 def p_asignacion(t):
     'asignacion         : ID IGUAL operacion PUNTOYCOMA'
     t[0]=Asignacion(t[1],t[3])
+    h.reporteGramatical1 +="ASIGNACION    ->      ID IGUAL OPERACION PUNTOYCOMA\n"
+    h.reporteGramatical2 +="t[0] = Asignacion(t[1],t[3])\n"
 
 # empiezan las producciones de las operaciones finales
 #la englobacion de las operaciones
@@ -264,6 +284,9 @@ def p_operacion(t):
                         | relacional
                         | final'''
     t[0]=t[1]
+    h.reporteGramatical1 +="OPERACION    ->      UNA OPERACION\n"
+    h.reporteGramatical2 +="t[0] = t[1]\n"
+
 def p_conversion(t):
     '''conversion         : PARIZQUIERDO INT PARDERECHO final
                           | PARIZQUIERDO FLOAT PARDERECHO final
@@ -289,6 +312,8 @@ def p_aritmetica(t):
     b=a[0]
     c=a[1]
     t[0]=ExpresionAritmetica(t[1],b,c)
+    h.reporteGramatical1 +="ARITMETICA    ->      FINAL ARITMETICA\n"
+    h.reporteGramatical2 +="t[0]=ExpresionAritmetica(t[1],b,c)\n"
 
 def p_aritmetica_prima(t):
     '''aritmetica_prima         : MAS final
@@ -298,18 +323,30 @@ def p_aritmetica_prima(t):
                                 | RESIDUO final'''
     if t[1]=='+': 
         t[0]=[t[2],OPERACION_ARITMETICA.MAS]
+        h.reporteGramatical1 +="ARITMETICA    ->       + FINAL\n"
+        h.reporteGramatical2 +="t[0]=ExpresionAritmetica(t[1],t[3],OPERACION_ARITMETICA.MAS)\n"
     elif t[1]=='-': 
         t[0]=[t[2],OPERACION_ARITMETICA.MENOS]
+        h.reporteGramatical1 +="ARITMETICA    ->       - FINAL\n"
+        h.reporteGramatical2 +="t[0]=ExpresionAritmetica(t[1],t[3],OPERACION_ARITMETICA.MENOS)\n"
     elif t[1]=='*': 
         t[0]=[t[2],OPERACION_ARITMETICA.POR]
+        h.reporteGramatical1 +="ARITMETICA    ->       * FINAL\n"
+        h.reporteGramatical2 +="t[0]=ExpresionAritmetica(t[1],t[3],OPERACION_ARITMETICA.POR)\n"
     elif t[1]=='/': 
         t[0]=[t[2],OPERACION_ARITMETICA.DIVIDIDO]
+        h.reporteGramatical1 +="ARITMETICA    ->       / FINAL\n"
+        h.reporteGramatical2 +="t[0]=ExpresionAritmetica(t[1],t[3],OPERACION_ARITMETICA.DIVIDIDO)\n"
     elif t[1]=='%': 
         t[0]=[t[2],OPERACION_ARITMETICA.RESIDUO]
+        h.reporteGramatical1 +="ARITMETICA    ->       '%' FINAL\n"
+        h.reporteGramatical2 +="t[0]=ExpresionAritmetica(t[1],t[3],OPERACION_ARITMETICA.RESIDUO)\n"
 
 def p_aritmetica_abs(t):
     'aritmetica           : ABS PARIZQUIERDO final PARDERECHO'
     t[0]=ExpresionAbsoluto(t[3])
+    h.reporteGramatical1 +="ARITMETICA    ->      ABS PARIZQUIERDO FINAL PARDERECHO\n"
+    h.reporteGramatical2 +="t[0]=ExpresionAbsoluto(t[3])\n"
 
 def p_logica(t):
      'logica          : final logica_prima'
@@ -317,6 +354,9 @@ def p_logica(t):
      b=a[0]
      c=a[1]
      t[0]=ExpresionLogica(t[1],b,c)
+     h.reporteGramatical1 +="LOGICA    ->      FINAL AND FINAL\n"
+     h.reporteGramatical2 +="t[0]=ExpresionLogica(t[1],b,c)\n"
+     
 
 def p_logica_prima(t):
     '''logica_prima             : AND final
@@ -324,14 +364,22 @@ def p_logica_prima(t):
                                 | XOR final'''
     if t[1]=='&&': 
         t[0]=[t[2],OPERACION_LOGICA.AND]
+        h.reporteGramatical1 +="LOGICA    ->      FINAL AND FINAL\n"
+        h.reporteGramatical2 +="t[0]=ExpresionLogica(t[1],t[3],OPERACION_LOGICA.AND)\n"
     elif t[1]=='||':
         t[0]=[t[2],OPERACION_LOGICA.OR]
+        h.reporteGramatical1 +="LOGICA    ->      FINAL OR FINAL\n"
+        h.reporteGramatical2 +="t[0]=ExpresionLogica(t[1],t[3],OPERACION_LOGICA.OR\n"
     elif t[1]=='xor': 
         t[0]=[t[2],OPERACION_LOGICA.XOR]
+        h.reporteGramatical1 +="LOGICA_PRIMA    ->      FINAL XOR FINAL\n"
+        h.reporteGramatical2 +="t[0]=ExpresionLogica(t[1],t[3],OPERACION_LOGICA.XOR)\n"
                             
 def p_logica_not(t):
     'logica               : NOT final'
     t[0]=ExpresionLogicaNot(t[2])
+    h.reporteGramatical1 +="LOGICA    ->      NOT FINAL\n"
+    h.reporteGramatical2 +="t[0]=ExpresionLogicaNot(t[2])\n"
 
 def p_bit(t):
      'bit          : final bit_prima'
@@ -339,6 +387,8 @@ def p_bit(t):
      b=a[0]
      c=a[1]
      t[0]=ExpresionBit(t[1],b,c)
+     h.reporteGramatical1 +="BIT    ->       FINAL BIT_PRIMA\n"
+     h.reporteGramatical2 +="t[0]=ExpresionBit(t[1],b,c)\n"
 
 def p_bit_prima(t):
     '''bit_prima          : AND2 final
@@ -348,18 +398,30 @@ def p_bit_prima(t):
                           | DESPLAZAMIENTODER final'''
     if t[1]=='&': 
         t[0]=[t[2],OPERACION_BIT.AND]
+        h.reporteGramatical1 +="BIT    ->       AND2 FINAL\n"
+        h.reporteGramatical2 +="t[0]=ExpresionBit(t[1],t[3],OPERACION_BIT.AND)\n"
     elif t[1]=='|': 
         t[0]=[t[2],OPERACION_BIT.OR]
+        h.reporteGramatical1 +="BIT    ->      OR2 FINAL\n"
+        h.reporteGramatical2 +="t[0]=ExpresionBit(t[1],t[3],OPERACION_BIT.OR2)\n"
     elif t[1]=='^': 
         t[0]=[t[2],OPERACION_BIT.XOR]
+        h.reporteGramatical1 +="BIT    ->      XOR2 FINAL\n"
+        h.reporteGramatical2 +="t[0]=ExpresionBit(t[1],t[3],OPERACION_BIT.XOR2)\n"
     elif t[1]=='<<': 
         t[0]=[t[2],OPERACION_BIT.DESPLAZAMIENTO_IZQUIERDA]
+        h.reporteGramatical1 +="BIT    ->      DESPLAZAMIENTOIZQ FINAL\n"
+        h.reporteGramatical2 +="t[0]=ExpresionBit(t[1],t[3],OPERACION_BIT.DESPLAZAMIENTOIZQ)\n"
     elif t[1]=='>>': 
         t[0]=[t[2],OPERACION_BIT.DESPLAZAMIENTO_DERECHA]
+        h.reporteGramatical1 +="BIT    ->      DESPLAZAMIENTODER FINAL\n"
+        h.reporteGramatical2 +="t[0]=ExpresionBit(t[1],t[3],OPERACION_BIT.DESPLAZAMIENTODER)\n"
 
 def p_bit_not(t):
     'bit                  : NOT2 final'
     t[0]=ExpresionBitNot(t[2])
+    h.reporteGramatical1 +="BIT    ->      NOT2 FINAL\n"
+    h.reporteGramatical2 +="t[0]=ExpresionBitNot(t[2])\n"
 
 def p_relacional(t):
      'relacional          : final relacional_prima'
@@ -367,6 +429,8 @@ def p_relacional(t):
      b=a[0]
      c=a[1]
      t[0]=ExpresionRelacional(t[1],b,c)
+     h.reporteGramatical1 +="RELACIONAL    ->      FINAL RELACIONAL_PRIMA\n"
+     h.reporteGramatical2 +="t[0]=ExpresionRelacional(t[1],b,c)\n"
 
 def p_relacional_prima(t):
     '''relacional_prima         : IGUALIGUAL final
@@ -377,43 +441,67 @@ def p_relacional_prima(t):
                                 | MENOR final'''
     if t[1]=='==': 
         t[0]=[t[2],OPERACION_RELACIONAL.IGUAL_IGUAL]
+        h.reporteGramatical1 +="RELACIONAL    ->      IGUALIGUAL FINAL\n"
+        h.reporteGramatical2 +="t[0]=ExpresionRelacional(t[1],t[3],OPERACION_RELACIONAL.IGUAL_IGUAL)\n"
     elif t[1]=='!=': 
         t[0]=[t[2],OPERACION_RELACIONAL.IGUAL_IGUAL]
+        h.reporteGramatical1 +="RELACIONAL    ->      DIFERENTE FINAL\n"
+        h.reporteGramatical2 +="t[0]=ExpresionRelacional(t[1],t[3],OPERACION_RELACIONAL.NO_IGUAL)\n"
     elif t[1]=='>=': 
         t[0]=[t[2],OPERACION_RELACIONAL.IGUAL_IGUAL]
+        h.reporteGramatical1 +="RELACIONAL    ->      MAYORIGUAL FINAL\n"
+        h.reporteGramatical2 +="t[0]=ExpresionRelacional(t[1],t[3],OPERACION_RELACIONAL.MAYOR_IGUAL)\n"
     elif t[1]=='<=': 
        t[0]=[t[2],OPERACION_RELACIONAL.IGUAL_IGUAL]
+       h.reporteGramatical1 +="RELACIONAL    ->      MENORIGUAL FINAL\n"
+       h.reporteGramatical2 +="t[0]=ExpresionRelacional(t[1],t[3],OPERACION_RELACIONAL.MENOR_IGUAL)\n"
     elif t[1]=='>': 
         t[0]=[t[2],OPERACION_RELACIONAL.IGUAL_IGUAL]
+        h.reporteGramatical1 +="RELACIONAL    ->      MAYOR FINAL\n"
+        h.reporteGramatical2 +="t[0]=ExpresionRelacional(t[1],t[3],OPERACION_RELACIONAL.MAYOR)\n"
     elif t[1]=='<': 
         t[0]=[t[2],OPERACION_RELACIONAL.IGUAL_IGUAL]
+        h.reporteGramatical1 +="RELACIONAL    ->      FINAL MENOR FINAL\n"
+        h.reporteGramatical2 +="t[0]=ExpresionRelacional(t[1],t[3],OPERACION_RELACIONAL.MENOR)\n"
 
 
 def p_final(t):
     '''final              : DECIMAL
                           | ENTERO'''
     t[0]=ExpresionNumero(t[1])
+    h.reporteGramatical1 +="FINAL    ->      ID("+str(t[1])+")\n"
+    h.reporteGramatical2 +="t[0]=ExpresionNumero(t[1])\n"
 
 def p_final_id(t):
     'final              : ID'
     t[0]=ExpresionIdentificador(t[1])
+    h.reporteGramatical1 +="FINAL    ->      ID("+str(t[1])+")\n"
+    h.reporteGramatical2 +="t[0]=ExpresionIdentificador(t[1])\n"
 
 def p_artimetica_negativo(t):
     'final : MENOS final %prec UMENOS'
     t[0]=ExpresionNegativo(t[2])
+    h.reporteGramatical1 +="FINAL    ->      MENOS FINAL\n"
+    h.reporteGramatical2 +="t[0]=ExpresionNegativo(t[2])\n"
 
 def p_final_read(t):
     'final              : READ PARIZQUIERDO PARDERECHO'
     x = input('ingrese un valor: ')
     t[0]=ExpresionSimpleComilla(x)
+    h.reporteGramatical1 +="FINAL    ->      READ PARIZQUIERDO PARDERECHO\n"
+    h.reporteGramatical2 +="x = input('ingrese un valor: ') \nt[0]=ExpresionSimpleComilla(x)\n"
 
 def p_final_array(t):
     'final              : ARRAY PARIZQUIERDO PARDERECHO'  
+    h.reporteGramatical1 +="FINAL    ->      "+t[1]+"\n"
+    h.reporteGramatical2 +="\n"  
 
 
 def p_final_cadena(t):
     'final              : CADENA'
     t[0]=ExpresionSimpleComilla(t[1])
+    h.reporteGramatical1 +="FINAL    ->      CADENA ("+t[1]+")\n"
+    h.reporteGramatical2 +="t[0]=ExpresionSimpleComilla(t[1])\n"
 
 def p_empty(t):
     'empty :'

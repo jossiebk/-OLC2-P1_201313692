@@ -70,4 +70,11 @@ class Goto(Instruccion) :
     def __init__(self, etiqueta) :
         self.etiqueta = etiqueta
 
+class Unset(Instruccion) :
+    '''
+        Esta clase representa una accion que elimina la variable
+        Recibe como parámetro la variable como tal
+    '''
 
+    def __init__(self, variable) :
+        self.variable = variable

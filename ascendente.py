@@ -7,10 +7,18 @@ from instrucciones import *
 import reportes as h
 
 
+def procesar_destruccion(instr,ts):
+    print("entra a lo del unset")
+    print(instr.variable)
+    simbolo = TS.Simbolo(instr.variable, TS.TIPO_DE_DATO.NUMERO, "la variable "+instr.variable+" no esta definida")
+    ts.actualizar(simbolo)
+
 
 
 def procesar_imprimir(instr, ts) :
+    print("entra al print con: ",instr.cad)
     cadena=resolver_cadena(instr.cad, ts)
+    print("paso 2: ",cadena)
     a=""
     if cadena.count('\\n')>0:
         print('Jossie>', resolver_cadena(instr.cad, ts).replace("\\n","\nJossie>"))
@@ -289,6 +297,7 @@ def procesar_instrucciones(instrucciones, ts) :
         elif isinstance(instr, If) : procesar_if(instr, ts)
         elif isinstance(instr,Salida): break
         elif isinstance(instr,Goto) : procesar_salto(instr,ts)
+        elif isinstance(instr,Unset): procesar_destruccion(instr,ts)
         #elif
         else : 
             print('Error: instrucción no válida')
@@ -359,10 +368,10 @@ def generarReporteSimbolos(ruta):
         tipo=""
         print(x,"=",ts_global.obtener(x).valor,ts_global.obtener(x).tipo)
         if  re.match('[a-zA-Z].*?',str(ts_global.obtener(x).valor)): tipo="CARACTER"
-        elif re.match('[0-9]+',str(ts_global.obtener(x).valor)): tipo="NUMERO"
-        elif re.match('[0-9]+.[0-9]+',str(ts_global.obtener(x).valor)): tipo="FLOTANTE"
+        elif re.match('[-]?[0-9]+',str(ts_global.obtener(x).valor)): tipo="NUMERO"
+        elif re.match('[-]?[0-9]+(.[0-9]+)',str(ts_global.obtener(x).valor)): tipo="FLOTANTE"
         print("sale del if")
-        val+="<td>"+str(x)+"</td><td>"+str(ts_global.obtener(x).valor)+"</td><td>"+tipo+"</td>\n"
+        val+="<tr><td>"+str(x)+"</td><td>"+str(ts_global.obtener(x).valor)+"</td><td>"+tipo+"</td></tr>\n"
     #construyo el archivo html
     print("manda los datos")
     h.reporteSimbolos(ruta,val)
