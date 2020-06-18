@@ -43,6 +43,7 @@ class Ui_MainWindow(object):
         #se crea etiqueta
         #self.EdicionTexto = QtWidgets.QPlainTextEdit(self.ventanaCentrada)
         self.EdicionTexto = mostrarLineas.QCodeEditor(self.ventanaCentrada)
+        
         #para definir su posicion
         self.EdicionTexto.setGeometry(QtCore.QRect(40, 70, 860, 500))
         font = QtGui.QFont()
