@@ -144,9 +144,10 @@ def resolver_expresion_aritmetica(expNum, ts) :
     if isinstance(expNum, ExpresionAritmetica) :
         exp1 = resolver_expresion_aritmetica(expNum.exp1, ts)
         exp2 = resolver_expresion_aritmetica(expNum.exp2, ts)
+        print(exp1,"+++++",exp2)
         if expNum.operador == OPERACION_ARITMETICA.MAS : 
             if  re.match('-?\d+',str(exp1))  and re.match('-?\d+',str(exp2)):  return exp1 + exp2
-            elif re.match('\".*?\"',str(exp1))  and re.match('\".*?\"',str(exp2)):  return exp1 + exp2
+            elif re.match('.*?',str(exp1))  and re.match('.*?',str(exp2)):  return exp1 + exp2
             else: 
                 print("error: no se pueden operar distintos tipos")
                 h.errores+=  "<tr><td>"+str(exp1)+"|"+str(exp2)+ "</td><td>N/A</td><td>N/A</td><td>SEMANTICO</td><td>no se pueden operar distintos tipos</td></tr>\n"
