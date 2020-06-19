@@ -1,0 +1,129 @@
+# estos son comentarios
+#jossie castrillo
+#201313692
+#++++++++ INICIAN DECLARACIONES ++++++++
+main:
+$t0 =12;
+$t1 = 15;
+$t2 = 3;
+$t3 = 20;
+goto aritmetica;
+aritmetica:
+#+++++++ OPERACIONES ++++++++++++++++++++
+print('entra a operaciones aritmeticas');
+$t4=12.2+5.2;#-7
+$t5=$t1-$t0;#3
+$t1=11;
+$t6=$t2*$t3; #60
+$a0=$t1/$t2;#5
+$t7=abs(-250);
+$a1= 40 % $t2;#1
+$t90='jossie';
+$t100='bismarck';
+
+goto logica;
+logica:
+# aca empiezan operaciones logicas
+print('entra a operaciones logicas');
+$a2=0;
+$a3=!$a2;#1
+$a4=0 && 0;#1
+$a5=1 || 0;#0
+$a6=0 xor 0;#
+goto bit;
+bit:
+#aca empiezan las bit a bit
+print('entra a operaciones bit a bit');
+$a7=~$t3;
+$a8=$t2 & 4;
+$a9= $t2 | 4;
+$a10=$t2 ^ 4;
+$a11= $t2 >> 4;
+$a12=$t2 << 4;
+goto relacional;
+relacional:
+#y aca las relacionales
+print('entra a operaciones relacionales');
+$t8=5==5;
+$t9=5!=5;
+$t10=5>=7;
+$t11=5<=6;
+$t12=5<5;
+$t13=5>3;
+goto casteo;
+casteo:
+#algunos casteos de todas las formas
+print('entra a operaciones de casteo');
+$t15=106.55;
+$t16='j';
+$t17='Bismarck';
+$t18=(int)$t15;
+$t19=(int)$t16;
+$t20=(int)$t17;
+
+$t21=106;
+$t22='j';
+$t23='Bismarck';
+$t24=(float)$t21;
+$t25=(float)$t22;
+$t26=(float)$t23;
+
+$t27=98;
+$t28=100;
+$t29=97.8;
+$t30='Bismarck';
+$t31=(char)$t27;
+$t32=(char)$t28;
+$t33=(char)$t29;
+$t34=(char)$t30;
+if (5>6) goto resultados;
+resultados:
+print('++++++++++++++ resultados ++++++++++++++');
+print('hola mundo');
+print('jossie castrillo \n 201313692');
+print('OPERACIONES ARIRMETICAS \n');
+print($t4);
+print($t5);
+print('reasignacion de t1');
+print($t1);
+print($t6);
+print($a0);
+print($t7);
+print($a1);
+print('OPERACIONES LOGICAS \n');
+print($a3);
+print($a4);
+print($a5);
+print($a6);
+print('INSTRUCCIONES BIT A BIT \n');
+print($a7);
+print($a8);
+print($a8);
+print($a10);
+print($a11);
+print($a12);
+print('INSTRUCCIONES RELACIONALES \n');
+print($t8);
+print($t9);
+print($t10);
+print($t11);
+print($t12);
+print($t13);
+print('CONVERSIONES DE TIPO \n');
+print('converite a enteros');
+print($t18);
+print($t19);
+print($t20);
+
+print('convierte a flotante');
+print($t24);
+print($t25);
+print($t26);
+
+print('convierte a caracter');
+print($t31);
+print($t32);
+print($t33);
+print($t34);
+$t101=$t90+$t100;
+print($t101);
